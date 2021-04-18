@@ -1,4 +1,3 @@
-
 DROP TABLE LB.Person_Type;
 DROP TABLE LB.Control;
 DROP TABLE LB.Book;
@@ -15,9 +14,17 @@ CREATE USER LB IDENTIFIED BY LB;
 
 --Se crean las tablas necesarias
 CREATE TABLE LB.Person (ID_Number INT PRIMARY KEY NOT NULL, 
-                        Name NCHAR(30) NOT NULL, 
-                        Email nchar(30) NOT NULL, 
+                        Firstname NCHAR(30) NOT NULL, 
+                        Lastname NCHAR(30) NOT NULL,
                         Address nchar(60) NOT NULL);
+                        
+CREATE TABLE LB.Email (ID INT PRIMARY KEY NOT NULL, 
+                       ID_Person INT NOT NULL, 
+                       Email NCHAR(30) NOT NULL);
+                       
+CREATE TABLE LB.Adress(ID INT PRIMARY KEY NOT NULL,  
+                       ID_Person INT NOT NULL, 
+                       Adress nchar(500));
 
 CREATE TABLE LB.Person_Type (ID INT PRIMARY KEY NOT NULL, 
                              Type nchar(30) NOT NULL);
@@ -32,7 +39,7 @@ CREATE TABLE LB.Control (ID INT PRIMARY KEY NOT NULL,
 CREATE TABLE LB.Item (ID INT PRIMARY KEY NOT NULL, 
                       Name NCHAR(30) NOT NULL, 
                       Description NCHAR(60) NOT NULL, 
-                      on_loan NUMBER(1,0));
+                      on_loan NUMBER(1,0)); --el on_loan nos permite saber cuáles y cuántos items están en préstamo
 
 CREATE TABLE LB.Book (ID INT PRIMARY KEY NOT NULL,
                       ID_Clasification INT NOT NULL,
@@ -69,11 +76,8 @@ CREATE TABLE LB.Magazine(ID INT PRIMARY KEY NOT NULL,
                          ID_Item INT NOT NULL,
                          Title NCHAR(30) NOT NULL, 
                          Volume INT NOT NULL);                    
-                           
-                           
-                           
-                           
-                           
+                                 
+--Se establecen las foreign keys                          
 ALTER TABLE LB.Control
 ADD CONSTRAINT FK_Person
 FOREIGN KEY (ID_Person) REFERENCES LB.Person(ID_Number);
@@ -82,7 +86,10 @@ ALTER TABLE LB.Control
 ADD CONSTRAINT FK_ControlItem
 FOREIGN KEY (ID_Item) REFERENCES LB.Item(ID);
 
-            
+ALTER TABLE LB.Email
+ADD CONSTRAINT FK_EmailPerson
+FOREIGN KEY (ID_Person) REFERENCES LB.Person(ID);
+
 ALTER TABLE LB.Book
 ADD CONSTRAINT FK_Clasification
 FOREIGN KEY (ID_Clasification) REFERENCES LB.Book_Clasification(ID);      
@@ -106,4 +113,16 @@ FOREIGN KEY (ID_Item) REFERENCES LB.Item(ID);
 ALTER TABLE LB.Magazine
 ADD CONSTRAINT FK_MagazineItem
 FOREIGN KEY (ID_Item) REFERENCES LB.Item(ID);
+
+ALTER TABLE LB.Adress
+ADD CONSTRAINT FK_AdressPerson
+FOREIGN KEY (ID_Adress) REFERENCES LB.Person(ID);
+
+
+
+
+
+
+
+
                            
