@@ -7,7 +7,10 @@ DROP TABLE LB.Movie;
 DROP TABLE LB.Magazine;
 DROP TABLE LB.Genre;
 DROP TABLE LB.Item;
+DROP TABLE LB.Adress;
+DROP TABLE LB.Email;
 DROP TABLE LB.Person;
+
 
 --Se crea un esquema
 CREATE USER LB IDENTIFIED BY LB;
@@ -29,12 +32,12 @@ CREATE TABLE LB.Adress(ID INT PRIMARY KEY NOT NULL,
 CREATE TABLE LB.Person_Type (ID INT PRIMARY KEY NOT NULL, 
                              Type nchar(30) NOT NULL);
 
-CREATE TABLE LB.Control (ID INT PRIMARY KEY NOT NULL, 
-                         ID_Person INT NOT NULL,
-                         ID_Item INT NOT NULL,
-                         Loan_Date DATE NOT NULL, 
-                         Return_Date DATE NOT NULL, 
-                         Days_Amount INT NOT NULL);
+CREATE TABLE LB.Loan_Control (ID INT PRIMARY KEY NOT NULL, 
+                              ID_Person INT NOT NULL,
+                              ID_Item INT NOT NULL,
+                              Loan_Date DATE NOT NULL, 
+                              Return_Date DATE NOT NULL, 
+                              Days_Amount INT NOT NULL);
 
 CREATE TABLE LB.Item (ID INT PRIMARY KEY NOT NULL, 
                       Name NCHAR(30) NOT NULL, 
@@ -78,17 +81,17 @@ CREATE TABLE LB.Magazine(ID INT PRIMARY KEY NOT NULL,
                          Volume INT NOT NULL);                    
                                  
 --Se establecen las foreign keys                          
-ALTER TABLE LB.Control
+ALTER TABLE LB.Loan_Control
 ADD CONSTRAINT FK_Person
 FOREIGN KEY (ID_Person) REFERENCES LB.Person(ID_Number);
 
-ALTER TABLE LB.Control
+ALTER TABLE LB.Loan_Control
 ADD CONSTRAINT FK_ControlItem
 FOREIGN KEY (ID_Item) REFERENCES LB.Item(ID);
 
 ALTER TABLE LB.Email
 ADD CONSTRAINT FK_EmailPerson
-FOREIGN KEY (ID_Person) REFERENCES LB.Person(ID);
+FOREIGN KEY (ID_Person) REFERENCES LB.Person(ID_Number);
 
 ALTER TABLE LB.Book
 ADD CONSTRAINT FK_Clasification
@@ -116,7 +119,7 @@ FOREIGN KEY (ID_Item) REFERENCES LB.Item(ID);
 
 ALTER TABLE LB.Adress
 ADD CONSTRAINT FK_AdressPerson
-FOREIGN KEY (ID_Adress) REFERENCES LB.Person(ID);
+FOREIGN KEY (ID_Person) REFERENCES LB.Person(ID_Number);
 
 
 
