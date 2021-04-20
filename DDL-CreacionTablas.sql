@@ -1,15 +1,44 @@
 DROP TABLE LB.Person_Type;
-DROP TABLE LB.Control;
+DROP TABLE LB.Loan_Control;
 DROP TABLE LB.Book;
 DROP TABLE LB.Book_Clasification;
 DROP TABLE LB.Videogame;
 DROP TABLE LB.Movie;
 DROP TABLE LB.Magazine;
 DROP TABLE LB.Genre;
-DROP TABLE LB.Item;
+
 DROP TABLE LB.Adress;
 DROP TABLE LB.Email;
+DROP TABLE LB.Item;
 DROP TABLE LB.Person;
+
+--Se eliminan las secuencias
+DROP SEQUENCE person_seq;
+DROP SEQUENCE email_seq;
+DROP SEQUENCE adress_seq;
+DROP SEQUENCE persontype_seq;
+DROP SEQUENCE loancontrol_seq;
+DROP SEQUENCE item_seq;
+DROP SEQUENCE book_seq;
+DROP SEQUENCE bookclasification_seq;
+DROP SEQUENCE videogame_seq;
+DROP SEQUENCE movie_seq;
+DROP SEQUENCE genre_seq;
+DROP SEQUENCE magazine_seq;
+
+--Se eliminan los triggers
+DROP TRIGGER person_trigger;
+DROP TRIGGER email_trigger;
+DROP TRIGGER adress_trigger;
+DROP TRIGGER persontype_trigger;
+DROP TRIGGER loancontrol_trigger;
+DROP TRIGGER item_trigger;
+DROP TRIGGER book_trigger;
+DROP TRIGGER bookclasification_trigger;
+DROP TRIGGER videogame_trigger;
+DROP TRIGGER movie_trigger;
+DROP TRIGGER genre_trigger;
+DROP TRIGGER magazine_trigger;
 
 
 --Se crea un esquema
@@ -79,8 +108,10 @@ CREATE TABLE LB.Magazine(ID INT PRIMARY KEY NOT NULL,
                          ID_Item INT NOT NULL,
                          Title NCHAR(30) NOT NULL, 
                          Volume INT NOT NULL);                    
+                        
                                  
---Se establecen las foreign keys                          
+/*Se establecen las foreign keys*/ 
+
 ALTER TABLE LB.Loan_Control
 ADD CONSTRAINT FK_Person
 FOREIGN KEY (ID_Person) REFERENCES LB.Person(ID_Number);
@@ -122,10 +153,161 @@ ADD CONSTRAINT FK_AdressPerson
 FOREIGN KEY (ID_Person) REFERENCES LB.Person(ID_Number);
 
 
+/*se hacen los campos ID de tipo identity*/
 
+--Para la tabla Person
+CREATE SEQUENCE person_seq;
 
+CREATE OR REPLACE TRIGGER person_trigger 
+BEFORE INSERT ON LB.Person 
+FOR EACH ROW
+WHEN (new.ID_Number IS NULL)
+BEGIN
+  SELECT person_seq.NEXTVAL
+  INTO   :new.ID_Number
+  FROM   dual;
+END;
 
+--Para la tabla Email
+CREATE SEQUENCE email_seq;
 
+CREATE OR REPLACE TRIGGER email_trigger 
+BEFORE INSERT ON LB.Email 
+FOR EACH ROW
+WHEN (new.id IS NULL)
+BEGIN
+  SELECT email_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
 
+--Para la tabla Adress
+CREATE SEQUENCE adress_seq;
 
+CREATE OR REPLACE TRIGGER adress_trigger 
+BEFORE INSERT ON LB.Adress
+FOR EACH ROW
+WHEN (new.id IS NULL)
+BEGIN
+  SELECT adress_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+
+--Para la tabla Person_Type
+CREATE SEQUENCE persontype_seq;
+
+CREATE OR REPLACE TRIGGER persontype_trigger  
+BEFORE INSERT ON LB.Person_Type 
+FOR EACH ROW
+WHEN (new.id IS NULL)
+BEGIN
+  SELECT persontype_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+
+--Para la tabla Loan_Control
+CREATE SEQUENCE loancontrol_seq;
+
+CREATE OR REPLACE TRIGGER loancontrol_trigger  
+BEFORE INSERT ON LB.Loan_Control
+FOR EACH ROW
+WHEN (new.id IS NULL)
+BEGIN
+  SELECT loancontrol_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+
+--Para la tabla Item
+CREATE SEQUENCE item_seq;
+
+CREATE OR REPLACE TRIGGER item_trigger 
+BEFORE INSERT ON LB.Item
+FOR EACH ROW
+WHEN (new.id IS NULL)
+BEGIN
+  SELECT item_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+
+--Para la tabla Book
+CREATE SEQUENCE book_seq;
+
+CREATE OR REPLACE TRIGGER book_trigger 
+BEFORE INSERT ON LB.Book
+FOR EACH ROW
+WHEN (new.id IS NULL)
+BEGIN
+  SELECT book_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+
+--Para la tabla Book_Clasification
+CREATE SEQUENCE bookclasification_seq;
+
+CREATE OR REPLACE TRIGGER bookclasification_trigger 
+BEFORE INSERT ON LB.Book_Clasification
+FOR EACH ROW
+WHEN (new.id IS NULL)
+BEGIN
+  SELECT bookclasification_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+
+--Para la tabla Videogame
+CREATE SEQUENCE videogame_seq;
+
+CREATE OR REPLACE TRIGGER videogame_trigger 
+BEFORE INSERT ON LB.Videogame
+FOR EACH ROW
+WHEN (new.id IS NULL)
+BEGIN
+  SELECT videogame_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+
+--Para la tabla Movie
+CREATE SEQUENCE movie_seq;
+
+CREATE OR REPLACE TRIGGER movie_trigger  
+BEFORE INSERT ON LB.Movie
+FOR EACH ROW
+WHEN (new.id IS NULL)
+BEGIN
+  SELECT movie_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+
+--Para la tabla Genre
+CREATE SEQUENCE genre_seq;
+
+CREATE OR REPLACE TRIGGER genre_trigger  
+BEFORE INSERT ON LB.Genre
+FOR EACH ROW
+WHEN (new.id IS NULL)
+BEGIN
+  SELECT genre_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+
+--Para la tabla Magazine
+CREATE SEQUENCE magazine_seq;
+
+CREATE OR REPLACE TRIGGER magazine_trigger  
+BEFORE INSERT ON LB.Magazine
+FOR EACH ROW
+WHEN (new.id IS NULL)
+BEGIN
+  SELECT magazine_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
                            

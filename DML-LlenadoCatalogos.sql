@@ -1,3 +1,4 @@
+ALTER USER LB quota unlimited on USERS;
 --Filling of the catalog Person_Type
 INSERT INTO LB.Person_Type (type) 
 VALUES ('Student');
@@ -70,3 +71,6 @@ VALUES ('Romance');
 
 INSERT INTO LB.Genre (genre)
 VALUES ('Thriller');
+
+
+
