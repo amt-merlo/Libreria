@@ -7,7 +7,7 @@ DROP TABLE LB.Movie;
 DROP TABLE LB.Magazine;
 DROP TABLE LB.Genre;
 
-DROP TABLE LB.Adress;
+DROP TABLE LB.Address;
 DROP TABLE LB.Email;
 DROP TABLE LB.Item;
 DROP TABLE LB.Person;
@@ -48,15 +48,15 @@ CREATE USER LB IDENTIFIED BY LB;
 CREATE TABLE LB.Person (ID_Number INT PRIMARY KEY NOT NULL, 
                         Firstname NCHAR(30) NOT NULL, 
                         Lastname NCHAR(30) NOT NULL,
-                        Address nchar(60) NOT NULL);
+                        Birhdate DATE NOT NULL);
                         
 CREATE TABLE LB.Email (ID INT PRIMARY KEY NOT NULL, 
                        ID_Person INT NOT NULL, 
                        Email NCHAR(30) NOT NULL);
                        
-CREATE TABLE LB.Adress(ID INT PRIMARY KEY NOT NULL,  
+CREATE TABLE LB.Address(ID INT PRIMARY KEY NOT NULL,  
                        ID_Person INT NOT NULL, 
-                       Adress nchar(500));
+                       Address nchar(500));
 
 CREATE TABLE LB.Person_Type (ID INT PRIMARY KEY NOT NULL, 
                              Type nchar(30) NOT NULL);
@@ -148,15 +148,18 @@ ALTER TABLE LB.Magazine
 ADD CONSTRAINT FK_MagazineItem
 FOREIGN KEY (ID_Item) REFERENCES LB.Item(ID);
 
-ALTER TABLE LB.Adress
-ADD CONSTRAINT FK_AdressPerson
+ALTER TABLE LB.Address
+ADD CONSTRAINT FK_AddressPerson
 FOREIGN KEY (ID_Person) REFERENCES LB.Person(ID_Number);
 
 
 /*se hacen los campos ID de tipo identity*/
 
 --Para la tabla Person
-CREATE SEQUENCE person_seq;
+CREATE SEQUENCE person_seq
+START WITH 1
+INCREMENT BY 1
+MINVALUE 0;
 
 CREATE OR REPLACE TRIGGER person_trigger 
 BEFORE INSERT ON LB.Person 
@@ -169,7 +172,10 @@ BEGIN
 END;
 
 --Para la tabla Email
-CREATE SEQUENCE email_seq;
+CREATE SEQUENCE email_seq
+START WITH 1
+INCREMENT BY 1
+MINVALUE 0;
 
 CREATE OR REPLACE TRIGGER email_trigger 
 BEFORE INSERT ON LB.Email 
@@ -181,21 +187,27 @@ BEGIN
   FROM   dual;
 END;
 
---Para la tabla Adress
-CREATE SEQUENCE adress_seq;
+--Para la tabla Address
+CREATE SEQUENCE address_seq
+START WITH 1
+INCREMENT BY 1
+MINVALUE 0;
 
-CREATE OR REPLACE TRIGGER adress_trigger 
-BEFORE INSERT ON LB.Adress
+CREATE OR REPLACE TRIGGER address_trigger 
+BEFORE INSERT ON LB.Address
 FOR EACH ROW
 WHEN (new.id IS NULL)
 BEGIN
-  SELECT adress_seq.NEXTVAL
+  SELECT address_seq.NEXTVAL
   INTO   :new.id
   FROM   dual;
 END;
 
 --Para la tabla Person_Type
-CREATE SEQUENCE persontype_seq;
+CREATE SEQUENCE persontype_seq
+START WITH 1
+INCREMENT BY 1
+MINVALUE 0;
 
 CREATE OR REPLACE TRIGGER persontype_trigger  
 BEFORE INSERT ON LB.Person_Type 
@@ -208,7 +220,10 @@ BEGIN
 END;
 
 --Para la tabla Loan_Control
-CREATE SEQUENCE loancontrol_seq;
+CREATE SEQUENCE loancontrol_seq
+START WITH 1
+INCREMENT BY 1
+MINVALUE 0;
 
 CREATE OR REPLACE TRIGGER loancontrol_trigger  
 BEFORE INSERT ON LB.Loan_Control
@@ -221,7 +236,10 @@ BEGIN
 END;
 
 --Para la tabla Item
-CREATE SEQUENCE item_seq;
+CREATE SEQUENCE item_seq
+START WITH 1
+INCREMENT BY 1
+MINVALUE 0;
 
 CREATE OR REPLACE TRIGGER item_trigger 
 BEFORE INSERT ON LB.Item
@@ -234,7 +252,10 @@ BEGIN
 END;
 
 --Para la tabla Book
-CREATE SEQUENCE book_seq;
+CREATE SEQUENCE book_seq
+START WITH 1
+INCREMENT BY 1
+MINVALUE 0;
 
 CREATE OR REPLACE TRIGGER book_trigger 
 BEFORE INSERT ON LB.Book
@@ -247,7 +268,10 @@ BEGIN
 END;
 
 --Para la tabla Book_Clasification
-CREATE SEQUENCE bookclasification_seq;
+CREATE SEQUENCE bokclasification_seq
+START WITH 1
+INCREMENT BY 1
+MINVALUE 0;
 
 CREATE OR REPLACE TRIGGER bookclasification_trigger 
 BEFORE INSERT ON LB.Book_Clasification
@@ -260,7 +284,10 @@ BEGIN
 END;
 
 --Para la tabla Videogame
-CREATE SEQUENCE videogame_seq;
+CREATE SEQUENCE videogame_seq
+START WITH 1
+INCREMENT BY 1
+MINVALUE 0;
 
 CREATE OR REPLACE TRIGGER videogame_trigger 
 BEFORE INSERT ON LB.Videogame
@@ -273,7 +300,10 @@ BEGIN
 END;
 
 --Para la tabla Movie
-CREATE SEQUENCE movie_seq;
+CREATE SEQUENCE movie_seq
+START WITH 1
+INCREMENT BY 1
+MINVALUE 0;
 
 CREATE OR REPLACE TRIGGER movie_trigger  
 BEFORE INSERT ON LB.Movie
@@ -286,7 +316,10 @@ BEGIN
 END;
 
 --Para la tabla Genre
-CREATE SEQUENCE genre_seq;
+CREATE SEQUENCE genre_seq
+START WITH 1
+INCREMENT BY 1
+MINVALUE 0;
 
 CREATE OR REPLACE TRIGGER genre_trigger  
 BEFORE INSERT ON LB.Genre
@@ -299,7 +332,10 @@ BEGIN
 END;
 
 --Para la tabla Magazine
-CREATE SEQUENCE magazine_seq;
+CREATE SEQUENCE magazine_seq
+START WITH 1
+INCREMENT BY 1
+MINVALUE 0;
 
 CREATE OR REPLACE TRIGGER magazine_trigger  
 BEFORE INSERT ON LB.Magazine
@@ -310,4 +346,8 @@ BEGIN
   INTO   :new.id
   FROM   dual;
 END;
-                           
+
+variable XATS NUMBER(8);   
+
+SELECT genre_seq.nextval into XATS from dual;
+

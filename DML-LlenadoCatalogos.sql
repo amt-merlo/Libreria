@@ -12,6 +12,8 @@ VALUES ('Relative');
 INSERT INTO LB.Person_Type (type)
 VALUES ('Other');
 
+
+
 --Filling of the clasification's table 
 INSERT INTO LB.Book_Clasification (clasification)
 VALUES ('Fiction');
