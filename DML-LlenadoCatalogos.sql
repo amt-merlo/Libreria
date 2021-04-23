@@ -13,7 +13,6 @@ INSERT INTO LB.Person_Type (type)
 VALUES ('Other');
 
 
-
 --Filling of the clasification's table 
 INSERT INTO LB.Book_Clasification (clasification)
 VALUES ('Fiction');
@@ -74,5 +73,11 @@ VALUES ('Romance');
 INSERT INTO LB.Genre (genre)
 VALUES ('Thriller');
 
+--Para ver el resultado
+SELECT * FROM LB.person_type;
+SELECT * FROM LB.Book_Clasification;
+SELECT * FROM LB.Genre;
 
-
+DELETE FROM LB.Person_Type;
+DELETE FROM LB.Genre;
+DELETE FROM LB.book_clasification;

@@ -1,35 +1,7 @@
-DROP TABLE LB.Person_Type;
-DROP TABLE LB.Loan_Control;
-DROP TABLE LB.Book;
-DROP TABLE LB.Book_Clasification;
-DROP TABLE LB.Videogame;
-DROP TABLE LB.Movie;
-DROP TABLE LB.Magazine;
-DROP TABLE LB.Genre;
-
-DROP TABLE LB.Address;
-DROP TABLE LB.Email;
-DROP TABLE LB.Item;
-DROP TABLE LB.Person;
-
---Se eliminan las secuencias
-DROP SEQUENCE person_seq;
-DROP SEQUENCE email_seq;
-DROP SEQUENCE adress_seq;
-DROP SEQUENCE persontype_seq;
-DROP SEQUENCE loancontrol_seq;
-DROP SEQUENCE item_seq;
-DROP SEQUENCE book_seq;
-DROP SEQUENCE bookclasification_seq;
-DROP SEQUENCE videogame_seq;
-DROP SEQUENCE movie_seq;
-DROP SEQUENCE genre_seq;
-DROP SEQUENCE magazine_seq;
-
---Se eliminan los triggers
+--Se eliminan los triggers primero
 DROP TRIGGER person_trigger;
 DROP TRIGGER email_trigger;
-DROP TRIGGER adress_trigger;
+DROP TRIGGER address_trigger;
 DROP TRIGGER persontype_trigger;
 DROP TRIGGER loancontrol_trigger;
 DROP TRIGGER item_trigger;
@@ -40,9 +12,37 @@ DROP TRIGGER movie_trigger;
 DROP TRIGGER genre_trigger;
 DROP TRIGGER magazine_trigger;
 
+--Se eliminan las secuencias después
+DROP SEQUENCE person_seq;
+DROP SEQUENCE email_seq;
+DROP SEQUENCE address_seq;
+DROP SEQUENCE persontype_seq;
+DROP SEQUENCE loancontrol_seq;
+DROP SEQUENCE item_seq;
+DROP SEQUENCE book_seq;
+DROP SEQUENCE bookclasification_seq;
+DROP SEQUENCE videogame_seq;
+DROP SEQUENCE movie_seq;
+DROP SEQUENCE genre_seq;
+DROP SEQUENCE magazine_seq;
+
+--Por último, se eliminan las tablas
+DROP TABLE LB.Person_Type;
+DROP TABLE LB.Loan_Control;
+DROP TABLE LB.Book;
+DROP TABLE LB.Book_Clasification;
+DROP TABLE LB.Videogame;
+DROP TABLE LB.Movie;
+DROP TABLE LB.Magazine;
+DROP TABLE LB.Genre;
+DROP TABLE LB.Address;
+DROP TABLE LB.Email;
+DROP TABLE LB.Item;
+DROP TABLE LB.Person;
+
 
 --Se crea un esquema
-CREATE USER LB IDENTIFIED BY LB;
+CREATE USER LB IDENTIFIED BY LB; -- ESTE SE HACE SOLO LA PRIMERA VEZ !!!!
 
 --Se crean las tablas necesarias
 CREATE TABLE LB.Person (ID_Number INT PRIMARY KEY NOT NULL, 
@@ -268,12 +268,12 @@ BEGIN
 END;
 
 --Para la tabla Book_Clasification
-CREATE SEQUENCE bokclasification_seq
+CREATE SEQUENCE bookclasification_seq
 START WITH 1
 INCREMENT BY 1
 MINVALUE 0;
 
-CREATE OR REPLACE TRIGGER bookclasification_trigger 
+CREATE OR REPLACE TRIGGER bookclasification_trigger
 BEFORE INSERT ON LB.Book_Clasification
 FOR EACH ROW
 WHEN (new.id IS NULL)
@@ -348,6 +348,4 @@ BEGIN
 END;
 
 variable XATS NUMBER(8);   
-
-SELECT genre_seq.nextval into XATS from dual;
 
