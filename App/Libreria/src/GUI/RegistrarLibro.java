@@ -6,6 +6,7 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.Icon;
@@ -15,24 +16,36 @@ import javax.swing.ImageIcon;
  *
  * @author Allison
  */
-public class Prestamos extends javax.swing.JFrame {
+public class RegistrarLibro extends javax.swing.JFrame {
 
     /**
-     * Creates new form Prestamos
+     * Creates new form RegistrarLibro
      */
-    public Prestamos() {
+    public RegistrarLibro() {
         initComponents();
-        this.getContentPane().setBackground(Color.decode("#ececeb")); //F5CC7E o F5D28E o F3CC89
-        scaleImage();
+        setFrame();
     }
-
+    
+    public void setFrame(){
+        //Tamaño del JFrame
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        pack();
+        setSize(screenSize.width,screenSize.height);
+        //Color del JFrame
+        this.getContentPane().setBackground(Color.decode("#759b85")); //F5CC7E o F5D28E o F3CC89
+        //Imagen del JFrame
+        scaleImage();
+        //Icono del JFrame
+        ImageIcon img = new ImageIcon("C:\\Users\\Allison\\Documents\\GitHub\\Libreria\\LOGO.png");
+        this.setIconImage(img.getImage());
+    }
     public void scaleImage(){
-        ImageIcon imagen1 = new ImageIcon(getClass().getResource("/Images/libros_1.png"));
+        ImageIcon imagen1 = new ImageIcon(getClass().getResource("/Images/booknEarth.png"));
         Icon fondo1 = new ImageIcon(imagen1.getImage().getScaledInstance(lblFondo.getWidth(), lblFondo.getHeight(), Image.SCALE_SMOOTH));
         lblFondo.setIcon(fondo1);
-        this.repaint();
-        
+        this.repaint();   
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,12 +57,22 @@ public class Prestamos extends javax.swing.JFrame {
 
         lblFondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(239, 233, 239));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/rest.gif"))); // NOI18N
-        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 110, 280, 350));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(609, Short.MAX_VALUE)
+                .addComponent(lblFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(176, Short.MAX_VALUE)
+                .addComponent(lblFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -71,20 +94,20 @@ public class Prestamos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Prestamos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarLibro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Prestamos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarLibro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Prestamos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarLibro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Prestamos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarLibro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Prestamos().setVisible(true);
+                new RegistrarLibro().setVisible(true);
             }
         });
     }

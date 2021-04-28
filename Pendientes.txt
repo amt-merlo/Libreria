@@ -5,3 +5,4 @@ Cosas pendientes
 4. Agregar campos de auditoría a todas las tablas
 5. Crear tabla bitácora
 6.Crear triggers para los campos de auditoría y la bitácora
+7. Hacer las consultas

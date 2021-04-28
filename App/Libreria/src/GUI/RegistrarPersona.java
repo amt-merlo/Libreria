@@ -5,8 +5,12 @@
  */
 package GUI;
 
+import DBCommands.ConnectDB;
 import java.awt.Color;
 import java.awt.Image;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
@@ -21,16 +25,11 @@ public class RegistrarPersona extends javax.swing.JFrame {
     public RegistrarPersona() {
         initComponents();
         this.getContentPane().setBackground(Color.decode("#FBCF86")); //F5CC7E o F5D28E o F3CC89
-        scaleImage();
     }
-    public void scaleImage(){
-        ImageIcon icon = new ImageIcon("/Images/back.png");
-        Image img = icon.getImage();
-        Image imgScale = img.getScaledInstance(btnBack.getWidth(), btnBack.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon scaledIcon = new ImageIcon(imgScale);
-        btnBack.setIcon(scaledIcon);
-        
-    }
+    
+    
+    
+    
     /**
      * 
      * This method is called from within the constructor to initialize the form.
@@ -42,25 +41,30 @@ public class RegistrarPersona extends javax.swing.JFrame {
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
-        txtFieldFisrtname = new javax.swing.JTextField();
-        lblFirstname = new javax.swing.JLabel();
-        btnRegister = new javax.swing.JButton();
-        lblLastname = new javax.swing.JLabel();
-        txtFieldLastname = new javax.swing.JTextField();
-        lblBirthdate = new javax.swing.JLabel();
-        txtFiieldID = new javax.swing.JTextField();
+        btnBack = new javax.swing.JButton();
+        lblLinea = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         btnRegAddress = new javax.swing.JButton();
         btnRegisterEmail = new javax.swing.JButton();
         lblID1 = new javax.swing.JLabel();
-        txtFieldBirthdate = new javax.swing.JTextField();
+        txtFieldID = new javax.swing.JTextField();
+        lblFirstname = new javax.swing.JLabel();
+        txtFieldFirstname = new javax.swing.JTextField();
+        lblLastname = new javax.swing.JLabel();
+        txtFieldLastname = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        lblBirthdate = new javax.swing.JLabel();
+        txtFieldMonth = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtFieldDay = new javax.swing.JTextField();
+        txtFieldYear = new javax.swing.JTextField();
+        btnRegister = new javax.swing.JButton();
+        lblAddress = new javax.swing.JLabel();
         lblEmail = new javax.swing.JLabel();
-        lblAddress1 = new javax.swing.JLabel();
-        btnBack = new javax.swing.JButton();
-        lblLinea = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(244, 213, 178));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -69,91 +73,212 @@ public class RegistrarPersona extends javax.swing.JFrame {
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Register People");
         getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 240, 45));
-        getContentPane().add(txtFieldFisrtname, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 101, -1));
-
-        lblFirstname.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblFirstname.setForeground(new java.awt.Color(0, 0, 0));
-        lblFirstname.setText("Fisrtname:");
-        getContentPane().add(lblFirstname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 87, 22));
-
-        btnRegister.setBackground(new java.awt.Color(219, 107, 92));
-        btnRegister.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnRegister.setForeground(new java.awt.Color(153, 51, 0));
-        btnRegister.setText("Register");
-        getContentPane().add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 400, 130, 40));
-
-        lblLastname.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblLastname.setForeground(new java.awt.Color(0, 0, 0));
-        lblLastname.setText("Lastname:");
-        getContentPane().add(lblLastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 87, 22));
-        getContentPane().add(txtFieldLastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 101, -1));
-
-        lblBirthdate.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblBirthdate.setForeground(new java.awt.Color(0, 0, 0));
-        lblBirthdate.setText("Birthdate");
-        getContentPane().add(lblBirthdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 87, 22));
-        getContentPane().add(txtFiieldID, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 97, -1));
-
-        btnRegAddress.setBackground(new java.awt.Color(219, 107, 92));
-        btnRegAddress.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnRegAddress.setForeground(new java.awt.Color(153, 51, 0));
-        btnRegAddress.setText("Register Address");
-        getContentPane().add(btnRegAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 133, -1));
-
-        btnRegisterEmail.setBackground(new java.awt.Color(219, 107, 92));
-        btnRegisterEmail.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnRegisterEmail.setForeground(new java.awt.Color(153, 51, 0));
-        btnRegisterEmail.setText("Register E-mail");
-        getContentPane().add(btnRegisterEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 123, -1));
-
-        lblID1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblID1.setForeground(new java.awt.Color(0, 0, 0));
-        lblID1.setText("ID Number:");
-        getContentPane().add(lblID1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 87, 22));
-        getContentPane().add(txtFieldBirthdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 100, -1));
-
-        lblEmail.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblEmail.setForeground(new java.awt.Color(0, 0, 0));
-        lblEmail.setText("E-mail");
-        getContentPane().add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, 87, 24));
-
-        lblAddress1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblAddress1.setForeground(new java.awt.Color(0, 0, 0));
-        lblAddress1.setText("Address;");
-        getContentPane().add(lblAddress1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 87, 22));
 
         btnBack.setBackground(new java.awt.Color(219, 107, 92));
         btnBack.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnBack.setText("⇦");
-        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 50));
+        btnBack.setText("Back");
+        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 20));
 
         lblLinea.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblLinea.setForeground(new java.awt.Color(0, 0, 0));
         lblLinea.setText("----------------------------------------------");
         getContentPane().add(lblLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/personaanimada1.gif"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 482, -1));
+        jPanel1.setBackground(new java.awt.Color(251, 207, 134));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        jPanel1.setBackground(new java.awt.Color(242, 205, 92));
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnRegAddress.setBackground(new java.awt.Color(219, 107, 92));
+        btnRegAddress.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRegAddress.setForeground(new java.awt.Color(153, 51, 0));
+        btnRegAddress.setText("Register Address");
+        btnRegAddress.setBorder(null);
+
+        btnRegisterEmail.setBackground(new java.awt.Color(219, 107, 92));
+        btnRegisterEmail.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRegisterEmail.setForeground(new java.awt.Color(153, 51, 0));
+        btnRegisterEmail.setText("Register E-mail");
+        btnRegisterEmail.setBorder(null);
+
+        lblID1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblID1.setForeground(new java.awt.Color(0, 0, 0));
+        lblID1.setText("ID Number:");
+
+        lblFirstname.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblFirstname.setForeground(new java.awt.Color(0, 0, 0));
+        lblFirstname.setText("Fisrtname:");
+
+        lblLastname.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblLastname.setForeground(new java.awt.Color(0, 0, 0));
+        lblLastname.setText("Lastname:");
+
+        jPanel2.setBackground(new java.awt.Color(255, 204, 153));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        lblBirthdate.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblBirthdate.setForeground(new java.awt.Color(0, 0, 0));
+        lblBirthdate.setText("Birthdate");
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Month:");
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Day:");
+
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Year:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblBirthdate, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtFieldMonth)
+                    .addComponent(txtFieldDay, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(txtFieldYear))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtFieldYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblBirthdate, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtFieldMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtFieldDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel4)
+                        .addGap(6, 6, 6)))
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
+
+        btnRegister.setBackground(new java.awt.Color(172, 188, 138));
+        btnRegister.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRegister.setForeground(new java.awt.Color(88, 140, 126));
+        btnRegister.setText("Register");
+        btnRegister.setBorder(null);
+        btnRegister.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegisterMouseClicked(evt);
+            }
+        });
+
+        lblAddress.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblAddress.setForeground(new java.awt.Color(0, 0, 0));
+        lblAddress.setText("Address:");
+
+        lblEmail.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblEmail.setForeground(new java.awt.Color(0, 0, 0));
+        lblEmail.setText("E-mail:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 346, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnRegisterEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnRegAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(29, 29, 29))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblID1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblLastname, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtFieldLastname, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                                    .addComponent(txtFieldFirstname)
+                                    .addComponent(txtFieldID, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(39, 39, 39)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(6, 6, 6))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 266, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblID1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFieldFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblLastname, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFieldLastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(lblAddress)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRegAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblEmail)
+                        .addGap(9, 9, 9)
+                        .addComponent(btnRegisterEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 29, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 350, 270));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 430, 350));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/personaanimada1.gif"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 0, 480, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegisterMouseClicked
+        // TODO add your handling code here:
+        String Firstname, Lastname, Birthdate;
+        int ID_Number;
+        
+        Firstname = txtFieldFirstname.getText();
+        Lastname = txtFieldLastname.getText();
+        Birthdate = txtFieldDay.getText()+"-"+txtFieldMonth.getText()+"-"+txtFieldYear.getText();
+        ID_Number = Integer.parseInt(txtFieldID.getText());
+        
+        try {
+            ConnectDB.insertPerson(ID_Number, Firstname, Lastname, Birthdate);
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistrarPersona.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnRegisterMouseClicked
 
     /**
      * @param args the command line arguments
@@ -196,8 +321,12 @@ public class RegistrarPersona extends javax.swing.JFrame {
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnRegisterEmail;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblAddress1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBirthdate;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblFirstname;
@@ -205,9 +334,11 @@ public class RegistrarPersona extends javax.swing.JFrame {
     private javax.swing.JLabel lblLastname;
     private javax.swing.JLabel lblLinea;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JTextField txtFieldBirthdate;
-    private javax.swing.JTextField txtFieldFisrtname;
+    private javax.swing.JTextField txtFieldDay;
+    private javax.swing.JTextField txtFieldFirstname;
+    private javax.swing.JTextField txtFieldID;
     private javax.swing.JTextField txtFieldLastname;
-    private javax.swing.JTextField txtFiieldID;
+    private javax.swing.JTextField txtFieldMonth;
+    private javax.swing.JTextField txtFieldYear;
     // End of variables declaration//GEN-END:variables
 }

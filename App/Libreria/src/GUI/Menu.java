@@ -5,6 +5,13 @@
  */
 package GUI;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Allison
@@ -16,6 +23,27 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        setFrame();
+        
+    }
+    public void setFrame(){
+        //Tamaño del JFrame
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        pack();
+        setSize(screenSize.width,screenSize.height);
+        //Color del JFrame
+        this.getContentPane().setBackground(Color.decode("#8C4646")); //F5CC7E o F5D28E o F3CC89
+        //Imagen en el JFrame
+        scaleImage();
+        //Icono del JFrame
+        ImageIcon img = new ImageIcon("C:\\Users\\Allison\\Documents\\GitHub\\Libreria\\LOGO.png");
+        this.setIconImage(img.getImage());
+    }
+    public void scaleImage(){
+        ImageIcon imagen1 = new ImageIcon(getClass().getResource("/Images/libros.png"));
+        Icon fondo1 = new ImageIcon(imagen1.getImage().getScaledInstance(lblFondo.getWidth(), lblFondo.getHeight(), Image.SCALE_DEFAULT));
+        lblFondo.setIcon(fondo1);
+        this.repaint();   
     }
 
     /**
@@ -27,25 +55,80 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblFondo = new javax.swing.JLabel();
+        btnRegistrarLibro = new javax.swing.JButton();
+        btnPrestamos = new javax.swing.JButton();
+        btnRegistrarPersona = new javax.swing.JButton();
+        lblTitulo = new javax.swing.JLabel();
+        lblLinea = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton2.setText("jButton2");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, -1, 90));
+        lblFondo.setText("jLabel1");
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 280, 300, 340));
 
-        jButton1.setText("jButton1");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, 70, 90));
+        btnRegistrarLibro.setBackground(new java.awt.Color(104, 149, 129));
+        btnRegistrarLibro.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRegistrarLibro.setForeground(new java.awt.Color(0, 64, 23));
+        btnRegistrarLibro.setText("Register Book");
+        btnRegistrarLibro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegistrarLibroMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btnRegistrarLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, 180, 60));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/estanterias-blancas-vacias-muebles-estanterias_102902-100.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 630));
+        btnPrestamos.setBackground(new java.awt.Color(104, 149, 129));
+        btnPrestamos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnPrestamos.setForeground(new java.awt.Color(0, 64, 23));
+        btnPrestamos.setText("Prestamos");
+        btnPrestamos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPrestamosMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btnPrestamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 490, 180, 60));
+
+        btnRegistrarPersona.setBackground(new java.awt.Color(104, 149, 129));
+        btnRegistrarPersona.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRegistrarPersona.setForeground(new java.awt.Color(0, 64, 23));
+        btnRegistrarPersona.setText("Register People");
+        btnRegistrarPersona.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegistrarPersonaMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btnRegistrarPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 180, 60));
+
+        lblTitulo.setFont(new java.awt.Font("Bernard MT Condensed", 0, 48)); // NOI18N
+        lblTitulo.setText("Personal Collection");
+        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
+
+        lblLinea.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblLinea.setText("---------------------------------------------------------");
+        getContentPane().add(lblLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegistrarLibroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarLibroMouseClicked
+        // TODO add your handling code here:
+        RegistrarLibro registrar = new RegistrarLibro();
+        registrar.setVisible(true);
+    }//GEN-LAST:event_btnRegistrarLibroMouseClicked
+
+    private void btnPrestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrestamosMouseClicked
+        // TODO add your handling code here:
+        Prestamos prestamos = new Prestamos();
+        prestamos.setVisible(true);
+    }//GEN-LAST:event_btnPrestamosMouseClicked
+
+    private void btnRegistrarPersonaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarPersonaMouseClicked
+        // TODO add your handling code here:
+        RegistrarPersona registrar = new RegistrarPersona();
+        registrar.setVisible(true);
+    }//GEN-LAST:event_btnRegistrarPersonaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -83,8 +166,11 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnPrestamos;
+    private javax.swing.JButton btnRegistrarLibro;
+    private javax.swing.JButton btnRegistrarPersona;
+    private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblLinea;
+    private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 }
