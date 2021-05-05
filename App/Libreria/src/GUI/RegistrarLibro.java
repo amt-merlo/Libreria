@@ -28,11 +28,11 @@ public class RegistrarLibro extends javax.swing.JFrame {
     
     public void setFrame(){
         //Tamaño del JFrame
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        pack();
-        setSize(screenSize.width,screenSize.height);
+        //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        //pack();
+        //setSize(screenSize.width,screenSize.height);
         //Color del JFrame
-        this.getContentPane().setBackground(Color.decode("#759b85")); //F5CC7E o F5D28E o F3CC89
+        this.getContentPane().setBackground(Color.decode("#ffe3d8")); //F5CC7E o F5D28E o F3CC89
         //Imagen del JFrame
         scaleImage();
         //Icono del JFrame
@@ -40,8 +40,8 @@ public class RegistrarLibro extends javax.swing.JFrame {
         this.setIconImage(img.getImage());
     }
     public void scaleImage(){
-        ImageIcon imagen1 = new ImageIcon(getClass().getResource("/Images/booknEarth.png"));
-        Icon fondo1 = new ImageIcon(imagen1.getImage().getScaledInstance(lblFondo.getWidth(), lblFondo.getHeight(), Image.SCALE_SMOOTH));
+        ImageIcon imagen1 = new ImageIcon(getClass().getResource("/Images/leyendo.gif"));
+        Icon fondo1 = new ImageIcon(imagen1.getImage().getScaledInstance(lblFondo.getWidth(), lblFondo.getHeight(), Image.SCALE_DEFAULT));
         lblFondo.setIcon(fondo1);
         this.repaint();   
     }
@@ -56,23 +56,113 @@ public class RegistrarLibro extends javax.swing.JFrame {
     private void initComponents() {
 
         lblFondo = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        txtFieldTitle = new javax.swing.JTextField();
+        lblTitle = new javax.swing.JLabel();
+        lblAuthor = new javax.swing.JLabel();
+        txtFieldAuthor = new javax.swing.JTextField();
+        lblEdition = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        lblPHouse = new javax.swing.JLabel();
+        txtFieldPHouse = new javax.swing.JTextField();
+        lblscore = new javax.swing.JLabel();
+        txtFieldScore = new javax.swing.JTextField();
+        btnRegister = new javax.swing.JButton();
+        lblTitulo = new javax.swing.JLabel();
+        lblLinea = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(609, Short.MAX_VALUE)
-                .addComponent(lblFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 180, 390, 330));
+
+        jPanel1.setBackground(new java.awt.Color(10, 4, 60));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        lblTitle.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle.setText("Title:");
+
+        lblAuthor.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblAuthor.setForeground(new java.awt.Color(255, 255, 255));
+        lblAuthor.setText("Author:");
+
+        lblEdition.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblEdition.setForeground(new java.awt.Color(255, 255, 255));
+        lblEdition.setText("Edition:");
+
+        lblPHouse.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblPHouse.setForeground(new java.awt.Color(255, 255, 255));
+        lblPHouse.setText("Publishing House:");
+
+        lblscore.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lblscore.setForeground(new java.awt.Color(255, 255, 255));
+        lblscore.setText("Score:");
+
+        btnRegister.setBackground(new java.awt.Color(187, 187, 187));
+        btnRegister.setForeground(new java.awt.Color(0, 0, 0));
+        btnRegister.setText("Register");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEdition, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblscore, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtFieldScore, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFieldPHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFieldAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFieldTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(357, 357, 357))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(219, 219, 219))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(176, Short.MAX_VALUE)
-                .addComponent(lblFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFieldTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTitle))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAuthor)
+                    .addComponent(txtFieldAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEdition))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPHouse)
+                    .addComponent(txtFieldPHouse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblscore)
+                    .addComponent(txtFieldScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 680, 290));
+
+        lblTitulo.setFont(new java.awt.Font("Bernard MT Condensed", 0, 36)); // NOI18N
+        lblTitulo.setText("Register Book");
+        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, 220, 60));
+
+        lblLinea.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblLinea.setText("-------------------------------------------------");
+        getContentPane().add(lblLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 280, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -113,6 +203,20 @@ public class RegistrarLibro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegister;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblAuthor;
+    private javax.swing.JLabel lblEdition;
     private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblLinea;
+    private javax.swing.JLabel lblPHouse;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblscore;
+    private javax.swing.JTextField txtFieldAuthor;
+    private javax.swing.JTextField txtFieldPHouse;
+    private javax.swing.JTextField txtFieldScore;
+    private javax.swing.JTextField txtFieldTitle;
     // End of variables declaration//GEN-END:variables
 }

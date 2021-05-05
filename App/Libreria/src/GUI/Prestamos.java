@@ -44,7 +44,6 @@ public class Prestamos extends javax.swing.JFrame {
 
         lblFondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(239, 233, 239));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

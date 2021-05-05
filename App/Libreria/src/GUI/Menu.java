@@ -32,7 +32,7 @@ public class Menu extends javax.swing.JFrame {
         pack();
         setSize(screenSize.width,screenSize.height);
         //Color del JFrame
-        this.getContentPane().setBackground(Color.decode("#8C4646")); //F5CC7E o F5D28E o F3CC89
+        this.getContentPane().setBackground(Color.decode("#0a043c")); //F5CC7E o F5D28E o F3CC89
         //Imagen en el JFrame
         scaleImage();
         //Icono del JFrame
@@ -40,8 +40,8 @@ public class Menu extends javax.swing.JFrame {
         this.setIconImage(img.getImage());
     }
     public void scaleImage(){
-        ImageIcon imagen1 = new ImageIcon(getClass().getResource("/Images/libros.png"));
-        Icon fondo1 = new ImageIcon(imagen1.getImage().getScaledInstance(lblFondo.getWidth(), lblFondo.getHeight(), Image.SCALE_DEFAULT));
+        ImageIcon imagen1 = new ImageIcon(getClass().getResource("/Images/LOGO.PNG"));
+        Icon fondo1 = new ImageIcon(imagen1.getImage().getScaledInstance(lblFondo.getWidth(), lblFondo.getHeight(), Image.SCALE_SMOOTH));
         lblFondo.setIcon(fondo1);
         this.repaint();   
     }
@@ -66,48 +66,62 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblFondo.setText("jLabel1");
-        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 280, 300, 340));
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 370, 410, 400));
 
-        btnRegistrarLibro.setBackground(new java.awt.Color(104, 149, 129));
-        btnRegistrarLibro.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnRegistrarLibro.setForeground(new java.awt.Color(0, 64, 23));
+        btnRegistrarLibro.setBackground(new java.awt.Color(187, 187, 187));
+        btnRegistrarLibro.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        btnRegistrarLibro.setForeground(new java.awt.Color(0, 0, 0));
         btnRegistrarLibro.setText("Register Book");
         btnRegistrarLibro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnRegistrarLibroMouseClicked(evt);
             }
         });
-        getContentPane().add(btnRegistrarLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, 180, 60));
+        getContentPane().add(btnRegistrarLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 170, 50));
 
-        btnPrestamos.setBackground(new java.awt.Color(104, 149, 129));
-        btnPrestamos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnPrestamos.setForeground(new java.awt.Color(0, 64, 23));
+        btnPrestamos.setBackground(new java.awt.Color(187, 187, 187));
+        btnPrestamos.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        btnPrestamos.setForeground(new java.awt.Color(0, 0, 0));
         btnPrestamos.setText("Prestamos");
+        btnPrestamos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnPrestamos.setBorderPainted(false);
         btnPrestamos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPrestamosMouseClicked(evt);
             }
         });
-        getContentPane().add(btnPrestamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 490, 180, 60));
+        btnPrestamos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrestamosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnPrestamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 450, 170, 50));
 
-        btnRegistrarPersona.setBackground(new java.awt.Color(104, 149, 129));
-        btnRegistrarPersona.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnRegistrarPersona.setForeground(new java.awt.Color(0, 64, 23));
+        btnRegistrarPersona.setBackground(new java.awt.Color(187, 187, 187));
+        btnRegistrarPersona.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        btnRegistrarPersona.setForeground(new java.awt.Color(0, 0, 0));
         btnRegistrarPersona.setText("Register People");
         btnRegistrarPersona.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnRegistrarPersonaMouseClicked(evt);
             }
         });
-        getContentPane().add(btnRegistrarPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 180, 60));
+        btnRegistrarPersona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarPersonaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRegistrarPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 170, 50));
 
-        lblTitulo.setFont(new java.awt.Font("Bernard MT Condensed", 0, 48)); // NOI18N
+        lblTitulo.setFont(new java.awt.Font("Bernard MT Condensed", 0, 60)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("Personal Collection");
-        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
+        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
-        lblLinea.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblLinea.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblLinea.setForeground(new java.awt.Color(255, 255, 255));
         lblLinea.setText("---------------------------------------------------------");
-        getContentPane().add(lblLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, -1));
+        getContentPane().add(lblLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -129,6 +143,14 @@ public class Menu extends javax.swing.JFrame {
         RegistrarPersona registrar = new RegistrarPersona();
         registrar.setVisible(true);
     }//GEN-LAST:event_btnRegistrarPersonaMouseClicked
+
+    private void btnRegistrarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPersonaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistrarPersonaActionPerformed
+
+    private void btnPrestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrestamosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPrestamosActionPerformed
 
     /**
      * @param args the command line arguments

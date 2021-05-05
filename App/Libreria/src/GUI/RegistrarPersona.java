@@ -24,11 +24,8 @@ public class RegistrarPersona extends javax.swing.JFrame {
      */
     public RegistrarPersona() {
         initComponents();
-        this.getContentPane().setBackground(Color.decode("#FBCF86")); //F5CC7E o F5D28E o F3CC89
+        this.getContentPane().setBackground(Color.decode("#FBCF86")); //#FBCF86
     }
-    
-    
-    
     
     /**
      * 
@@ -68,21 +65,26 @@ public class RegistrarPersona extends javax.swing.JFrame {
         setBackground(new java.awt.Color(244, 213, 178));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblTitulo.setFont(new java.awt.Font("Bernard MT Condensed", 0, 36)); // NOI18N
+        lblTitulo.setFont(new java.awt.Font("Bernard MT Condensed", 0, 30)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Register People");
-        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 240, 45));
+        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 240, 45));
 
         btnBack.setBackground(new java.awt.Color(219, 107, 92));
         btnBack.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnBack.setText("Back");
+        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBackMouseClicked(evt);
+            }
+        });
         getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 20));
 
-        lblLinea.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblLinea.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblLinea.setForeground(new java.awt.Color(0, 0, 0));
         lblLinea.setText("----------------------------------------------");
-        getContentPane().add(lblLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, -1, -1));
+        getContentPane().add(lblLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(251, 207, 134));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -98,6 +100,11 @@ public class RegistrarPersona extends javax.swing.JFrame {
         btnRegisterEmail.setForeground(new java.awt.Color(153, 51, 0));
         btnRegisterEmail.setText("Register E-mail");
         btnRegisterEmail.setBorder(null);
+        btnRegisterEmail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegisterEmailMouseClicked(evt);
+            }
+        });
 
         lblID1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         lblID1.setForeground(new java.awt.Color(0, 0, 0));
@@ -205,20 +212,20 @@ public class RegistrarPersona extends javax.swing.JFrame {
                         .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnRegAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(29, 29, 29))
+                            .addComponent(btnRegAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblID1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblLastname, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtFieldLastname, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                                    .addComponent(txtFieldLastname, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
                                     .addComponent(txtFieldFirstname)
                                     .addComponent(txtFieldID, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(39, 39, 39)))
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(28, 28, 28)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)))
                 .addGap(6, 6, 6))
         );
         jPanel1Layout.setVerticalGroup(
@@ -258,7 +265,7 @@ public class RegistrarPersona extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/personaanimada1.gif"))); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 0, 480, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 480, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -277,8 +284,20 @@ public class RegistrarPersona extends javax.swing.JFrame {
             ConnectDB.insertPerson(ID_Number, Firstname, Lastname, Birthdate);
         } catch (SQLException ex) {
             Logger.getLogger(RegistrarPersona.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error al insertar persona");
         }
     }//GEN-LAST:event_btnRegisterMouseClicked
+
+    private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnBackMouseClicked
+
+    private void btnRegisterEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegisterEmailMouseClicked
+        // TODO add your handling code here:
+        RegistrarCorreo registrar = new RegistrarCorreo();
+        registrar.setVisible(true);
+    }//GEN-LAST:event_btnRegisterEmailMouseClicked
 
     /**
      * @param args the command line arguments
