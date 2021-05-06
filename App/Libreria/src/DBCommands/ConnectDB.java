@@ -26,4 +26,30 @@ public class ConnectDB {
         st.setString(4, Birthdate);
         st.execute();
     }
+    
+    public static void insertEmail(int id, String email) throws SQLException{
+        String host = "jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC";
+        String user = "sys as sysdba";
+        String password = "merloadmin";
+        
+        Connection con = DriverManager.getConnection(host, user, password);
+        CallableStatement st = con.prepareCall("{ call InsertEmail(?, ?)");
+        
+        st.setInt(1, id);
+        st.setString(2, email);
+        st.execute();
+    }
+    
+    public static void insertAddress(int id, String address) throws SQLException{
+        String host = "jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC";
+        String user = "sys as sysdba";
+        String password = "merloadmin";
+        
+        Connection con = DriverManager.getConnection(host, user, password);
+        CallableStatement st = con.prepareCall("{ call InsertAddress(?, ?)");
+        
+        st.setInt(1, id);
+        st.setString(2, address);
+        st.execute();
+    }
 }

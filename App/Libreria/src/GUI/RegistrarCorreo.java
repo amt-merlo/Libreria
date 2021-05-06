@@ -21,10 +21,7 @@ public class RegistrarCorreo extends javax.swing.JFrame {
     public RegistrarCorreo() {
         initComponents();
         this.getContentPane().setBackground(Color.decode("#0a043c")); //F5CC7E o F5D28E o F3CC89
-        
-        //Poner JFrame en el centro
-      
-    
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -37,7 +34,7 @@ public class RegistrarCorreo extends javax.swing.JFrame {
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
-        txtFieldNumero = new javax.swing.JTextField();
+        txtFieldCorreo = new javax.swing.JTextField();
         btnRegister = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
@@ -48,13 +45,22 @@ public class RegistrarCorreo extends javax.swing.JFrame {
         lblTitulo.setText("Add E-mail");
 
         btnRegister.setBackground(new java.awt.Color(187, 187, 187));
+        btnRegister.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnRegister.setForeground(new java.awt.Color(0, 0, 0));
         btnRegister.setText("Add");
+        btnRegister.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegisterMouseClicked(evt);
+            }
+        });
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("*Please, add a valid e-mail");
 
+        btnBack.setBackground(new java.awt.Color(187, 187, 187));
+        btnBack.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(0, 0, 0));
         btnBack.setText("Back");
         btnBack.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
@@ -87,7 +93,7 @@ public class RegistrarCorreo extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(txtFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(126, 126, 126))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnRegister)
@@ -106,7 +112,7 @@ public class RegistrarCorreo extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnRegister)
                 .addContainerGap(59, Short.MAX_VALUE))
@@ -124,6 +130,13 @@ public class RegistrarCorreo extends javax.swing.JFrame {
     private void btnBackComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_btnBackComponentAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBackComponentAdded
+
+    private void btnRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegisterMouseClicked
+        // TODO add your handling code here:
+        String correo = txtFieldCorreo.getText();
+        RegistrarPersona.emails.add(correo);
+        txtFieldCorreo.setText(null);
+    }//GEN-LAST:event_btnRegisterMouseClicked
 
     /**
      * @param args the command line arguments
@@ -165,6 +178,6 @@ public class RegistrarCorreo extends javax.swing.JFrame {
     private javax.swing.JButton btnRegister;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JTextField txtFieldNumero;
+    private javax.swing.JTextField txtFieldCorreo;
     // End of variables declaration//GEN-END:variables
 }
