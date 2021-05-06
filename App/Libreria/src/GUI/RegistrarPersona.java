@@ -71,7 +71,7 @@ public static ArrayList direcciones = new ArrayList();
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo.setFont(new java.awt.Font("Bernard MT Condensed", 0, 30)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Register People");
         getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 240, 45));
@@ -87,12 +87,12 @@ public static ArrayList direcciones = new ArrayList();
         getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 20));
 
         lblLinea.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblLinea.setForeground(new java.awt.Color(0, 0, 0));
+        lblLinea.setForeground(new java.awt.Color(255, 255, 255));
         lblLinea.setText("----------------------------------------------");
         getContentPane().add(lblLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, -1, -1));
 
-        jPanel1.setBackground(new java.awt.Color(251, 207, 134));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel1.setBackground(new java.awt.Color(233, 148, 105));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
 
         btnRegAddress.setBackground(new java.awt.Color(219, 107, 92));
         btnRegAddress.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -117,34 +117,34 @@ public static ArrayList direcciones = new ArrayList();
         });
 
         lblID1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        lblID1.setForeground(new java.awt.Color(0, 0, 0));
+        lblID1.setForeground(new java.awt.Color(255, 255, 255));
         lblID1.setText("ID Number:");
 
         lblFirstname.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        lblFirstname.setForeground(new java.awt.Color(0, 0, 0));
+        lblFirstname.setForeground(new java.awt.Color(255, 255, 255));
         lblFirstname.setText("Fisrtname:");
 
         lblLastname.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        lblLastname.setForeground(new java.awt.Color(0, 0, 0));
+        lblLastname.setForeground(new java.awt.Color(255, 255, 255));
         lblLastname.setText("Lastname:");
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 153));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
 
         lblBirthdate.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        lblBirthdate.setForeground(new java.awt.Color(0, 0, 0));
+        lblBirthdate.setForeground(new java.awt.Color(255, 255, 255));
         lblBirthdate.setText("Birthdate");
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Month:");
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Day:");
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Year:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -199,11 +199,11 @@ public static ArrayList direcciones = new ArrayList();
         });
 
         lblAddress.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        lblAddress.setForeground(new java.awt.Color(0, 0, 0));
+        lblAddress.setForeground(new java.awt.Color(255, 255, 255));
         lblAddress.setText("Address:");
 
         lblEmail.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        lblEmail.setForeground(new java.awt.Color(0, 0, 0));
+        lblEmail.setForeground(new java.awt.Color(255, 255, 255));
         lblEmail.setText("E-mail:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

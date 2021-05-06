@@ -20,7 +20,7 @@ public class RegistrarCorreo extends javax.swing.JFrame {
      */
     public RegistrarCorreo() {
         initComponents();
-        this.getContentPane().setBackground(Color.decode("#0a043c")); //F5CC7E o F5D28E o F3CC89
+        this.getContentPane().setBackground(Color.decode("#588C7E")); //F5CC7E o F5D28E o F3CC89
         this.setLocationRelativeTo(null);
     }
 

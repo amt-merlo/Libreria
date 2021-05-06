@@ -32,7 +32,7 @@ public class Menu extends javax.swing.JFrame {
         pack();
         setSize(screenSize.width,screenSize.height);
         //Color del JFrame
-        this.getContentPane().setBackground(Color.decode("#0a043c")); //F5CC7E o F5D28E o F3CC89
+        this.getContentPane().setBackground(Color.decode("#588C7E")); //F5CC7E o F5D28E o F3CC89 | Azul 0a043c
         //Imagen en el JFrame
         scaleImage();
         //Icono del JFrame
@@ -56,11 +56,16 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         lblFondo = new javax.swing.JLabel();
-        btnRegistrarLibro = new javax.swing.JButton();
-        btnPrestamos = new javax.swing.JButton();
-        btnRegistrarPersona = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
         lblLinea = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        btnRegistrarPersona = new javax.swing.JButton();
+        btnRegistrarLibro = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        btnPrestamos = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -68,34 +73,18 @@ public class Menu extends javax.swing.JFrame {
         lblFondo.setText("jLabel1");
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 370, 410, 400));
 
-        btnRegistrarLibro.setBackground(new java.awt.Color(187, 187, 187));
-        btnRegistrarLibro.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        btnRegistrarLibro.setForeground(new java.awt.Color(0, 0, 0));
-        btnRegistrarLibro.setText("Register Book");
-        btnRegistrarLibro.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRegistrarLibroMouseClicked(evt);
-            }
-        });
-        getContentPane().add(btnRegistrarLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 170, 50));
+        lblTitulo.setFont(new java.awt.Font("Bernard MT Condensed", 0, 60)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo.setText("Personal Collection");
+        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
-        btnPrestamos.setBackground(new java.awt.Color(187, 187, 187));
-        btnPrestamos.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        btnPrestamos.setForeground(new java.awt.Color(0, 0, 0));
-        btnPrestamos.setText("Prestamos");
-        btnPrestamos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnPrestamos.setBorderPainted(false);
-        btnPrestamos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnPrestamosMouseClicked(evt);
-            }
-        });
-        btnPrestamos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrestamosActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnPrestamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 450, 170, 50));
+        lblLinea.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblLinea.setForeground(new java.awt.Color(255, 255, 255));
+        lblLinea.setText("---------------------------------------------------------");
+        getContentPane().add(lblLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, -1, -1));
+
+        jPanel1.setBackground(new java.awt.Color(242, 180, 118));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 4));
 
         btnRegistrarPersona.setBackground(new java.awt.Color(187, 187, 187));
         btnRegistrarPersona.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -111,17 +100,107 @@ public class Menu extends javax.swing.JFrame {
                 btnRegistrarPersonaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistrarPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 170, 50));
 
-        lblTitulo.setFont(new java.awt.Font("Bernard MT Condensed", 0, 60)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitulo.setText("Personal Collection");
-        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+        btnRegistrarLibro.setBackground(new java.awt.Color(187, 187, 187));
+        btnRegistrarLibro.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        btnRegistrarLibro.setForeground(new java.awt.Color(0, 0, 0));
+        btnRegistrarLibro.setText("Register Book");
+        btnRegistrarLibro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegistrarLibroMouseClicked(evt);
+            }
+        });
 
-        lblLinea.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblLinea.setForeground(new java.awt.Color(255, 255, 255));
-        lblLinea.setText("---------------------------------------------------------");
-        getContentPane().add(lblLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Segoe Script", 2, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Register");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnRegistrarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistrarPersona)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(91, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnRegistrarPersona)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnRegistrarLibro)
+                .addGap(40, 40, 40))
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 310, 150));
+
+        jPanel2.setBackground(new java.awt.Color(236, 209, 137));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 4));
+
+        jLabel2.setFont(new java.awt.Font("Segoe Script", 2, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Consulting Services");
+
+        btnPrestamos.setBackground(new java.awt.Color(187, 187, 187));
+        btnPrestamos.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        btnPrestamos.setForeground(new java.awt.Color(0, 0, 0));
+        btnPrestamos.setText("Loans");
+        btnPrestamos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnPrestamos.setBorderPainted(false);
+        btnPrestamos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPrestamosMouseClicked(evt);
+            }
+        });
+        btnPrestamos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrestamosActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(187, 187, 187));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setText("Books");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(40, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(85, 85, 85))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnPrestamos)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 310, 150));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -191,6 +270,11 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnPrestamos;
     private javax.swing.JButton btnRegistrarLibro;
     private javax.swing.JButton btnRegistrarPersona;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblLinea;
     private javax.swing.JLabel lblTitulo;
