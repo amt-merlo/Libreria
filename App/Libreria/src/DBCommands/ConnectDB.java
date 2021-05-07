@@ -52,4 +52,23 @@ public class ConnectDB {
         st.setString(2, address);
         st.execute();
     }
+    
+    public static void getBooks() throws SQLException{
+        String host = "jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC";
+        String user = "sys as sysdba";
+        String password = "merloadmin";
+        
+     
+        
+        Connection con = DriverManager.getConnection(host, user, password);
+        CallableStatement st = con.prepareCall("{? = call get_Books}");
+        st.registerOutParameter(1, OracleTypes.CURSOR);
+        
+        st.executeQuery();
+        ResultSet r = (ResultSet) st.getObject(1);
+        
+        while(r.next()){
+            //System.out.println(r.getString("TITLE"));
+        }
+    }
 }
