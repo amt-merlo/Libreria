@@ -5,6 +5,10 @@
  */
 package GUI;
 
+import GUI.Registro.RegistrarPersona;
+import GUI.Registro.RegistrarLibro;
+import GUI.Consultas.ConsultaLibros;
+import GUI.Consultas.ConsultaPrestamos;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -168,6 +172,11 @@ public class Menu extends javax.swing.JFrame {
         btnLoans.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnLoans.setForeground(new java.awt.Color(0, 0, 0));
         btnLoans.setText("Loans");
+        btnLoans.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLoansMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -271,6 +280,12 @@ public class Menu extends javax.swing.JFrame {
         ConsultaLibros consulta = new ConsultaLibros();
         consulta.setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void btnLoansMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoansMouseClicked
+        // TODO add your handling code here:
+        ConsultaPrestamos consulta = new ConsultaPrestamos();
+        consulta.setVisible(true);
+    }//GEN-LAST:event_btnLoansMouseClicked
 
     /**
      * @param args the command line arguments
