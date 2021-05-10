@@ -347,5 +347,4 @@ BEGIN
   FROM   dual;
 END;
 
-variable XATS NUMBER(8);   
 
