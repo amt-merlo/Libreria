@@ -48,30 +48,60 @@ CREATE USER LB IDENTIFIED BY LB; -- ESTE SE HACE SOLO LA PRIMERA VEZ !!!!
 CREATE TABLE LB.Person (ID_Number INT PRIMARY KEY NOT NULL, 
                         Firstname NCHAR(30) NOT NULL, 
                         Lastname NCHAR(30) NOT NULL,
-                        Birhdate DATE NOT NULL);
+                        Birthdate DATE NOT NULL,
+                        --Campos de auditoría
+                        CreatedOn DATE,
+                        CreatedBy NCHAR(30),
+                        UpdatedOn DATE,
+                        UpdatedBy NCHAR(30));
                         
 CREATE TABLE LB.Email (ID INT PRIMARY KEY NOT NULL, 
                        ID_Person INT NOT NULL, 
-                       Email NCHAR(30) NOT NULL);
+                       Email NCHAR(30) NOT NULL,
+                       --Campos de auditoría
+                        CreatedOn DATE,
+                        CreatedBy NCHAR(30),
+                        UpdatedOn DATE,
+                        UpdatedBy NCHAR(30));
                        
 CREATE TABLE LB.Address(ID INT PRIMARY KEY NOT NULL,  
                        ID_Person INT NOT NULL, 
-                       Address nchar(500));
+                       Address nchar(500),
+                       --Campos de auditoría
+                        CreatedOn DATE,
+                        CreatedBy NCHAR(30),
+                        UpdatedOn DATE,
+                        UpdatedBy NCHAR(30));
 
 CREATE TABLE LB.Person_Type (ID INT PRIMARY KEY NOT NULL, 
-                             Type nchar(30) NOT NULL);
+                             Type nchar(30) NOT NULL,
+                             --Campos de auditoría
+                             CreatedOn DATE,
+                             CreatedBy NCHAR(30),
+                             UpdatedOn DATE,
+                             UpdatedBy NCHAR(30));
 
 CREATE TABLE LB.Loan_Control (ID INT PRIMARY KEY NOT NULL, 
                               ID_Person INT NOT NULL,
                               ID_Item INT NOT NULL,
                               Loan_Date DATE NOT NULL, 
                               Return_Date DATE NOT NULL, 
-                              Days_Amount INT NOT NULL);
+                              Days_Amount INT NOT NULL,
+                              --Campos de auditoría
+                              CreatedOn DATE,
+                              CreatedBy NCHAR(30),
+                              UpdatedOn DATE,
+                              UpdatedBy NCHAR(30));
 
 CREATE TABLE LB.Item (ID INT PRIMARY KEY NOT NULL, 
                       Name NCHAR(30) NOT NULL, 
                       Description NCHAR(60) NOT NULL, 
-                      on_loan NUMBER(1,0)); --el on_loan nos permite saber cuáles y cuántos items están en préstamo
+                      on_loan NUMBER(1,0),
+                      --Campos de auditoría
+                      CreatedOn DATE,
+                      CreatedBy NCHAR(30),
+                      UpdatedOn DATE,
+                      UpdatedBy NCHAR(30)); --el on_loan nos permite saber cuáles y cuántos items están en préstamo
 
 CREATE TABLE LB.Book (ID INT PRIMARY KEY NOT NULL,
                       ID_Clasification INT NOT NULL,
@@ -81,16 +111,31 @@ CREATE TABLE LB.Book (ID INT PRIMARY KEY NOT NULL,
                       EDITION INT NOT NULL, 
                       CoverPage BLOB, 
                       PublishingHouse NCHAR(30) NOT NULL, 
-                      Score INT NOT NULL);
+                      Score INT NOT NULL,
+                      --Campos de auditoría
+                      CreatedOn DATE,
+                      CreatedBy NCHAR(30),
+                      UpdatedOn DATE,
+                      UpdatedBy NCHAR(30));
                       
 CREATE TABLE LB.Book_Clasification (ID INT PRIMARY KEY NOT NULL, 
-                                    Clasification NCHAR(30) NOT NULL);
+                                    Clasification NCHAR(30) NOT NULL,
+                                    --Campos de auditoría
+                                    CreatedOn DATE,
+                                    CreatedBy NCHAR(30),
+                                    UpdatedOn DATE,
+                                    UpdatedBy NCHAR(30));
                                     
 CREATE TABLE LB.Videogame (ID INT PRIMARY KEY NOT NULL, 
                            ID_Item INT NOT NULL,
                            Name NCHAR(30) NOT NULL, 
                            Developer NCHAR(30) NOT NULL,
-                           Genre NCHAR(30) NOT NULL);
+                           Genre NCHAR(30) NOT NULL,
+                           --Campos de auditoría
+                           CreatedOn DATE,
+                           CreatedBy NCHAR(30),
+                           UpdatedOn DATE,
+                           UpdatedBy NCHAR(30));
                            
 CREATE TABLE LB.Movie (ID INT PRIMARY KEY NOT NULL, 
                        ID_Genre INT NOT NULL,
@@ -98,16 +143,31 @@ CREATE TABLE LB.Movie (ID INT PRIMARY KEY NOT NULL,
                        Title NCHAR(30) NOT NULL, 
                        MinDuration INT NOT NULL, 
                        Director NCHAR(30) NOT NULL, 
-                       Score INT NOT NULL);
+                       Score INT NOT NULL,
+                       --Campos de auditoría
+                       CreatedOn DATE,
+                       CreatedBy NCHAR(30),
+                       UpdatedOn DATE,
+                       UpdatedBy NCHAR(30));
                        
 CREATE TABLE LB.Genre (ID INT PRIMARY KEY NOT NULL,
-                       Genre NCHAR(30) NOT NULL);
+                       Genre NCHAR(30) NOT NULL,
+                       --Campos de auditoría
+                       CreatedOn DATE,
+                       CreatedBy NCHAR(30),
+                       UpdatedOn DATE,
+                       UpdatedBy NCHAR(30));
 
                            
 CREATE TABLE LB.Magazine(ID INT PRIMARY KEY NOT NULL,
                          ID_Item INT NOT NULL,
                          Title NCHAR(30) NOT NULL, 
-                         Volume INT NOT NULL);                    
+                         Volume INT NOT NULL,
+                         --Campos de auditoría
+                         CreatedOn DATE,
+                         CreatedBy NCHAR(30),
+                         UpdatedOn DATE,
+                         UpdatedBy NCHAR(30));                    
                         
                                  
 /*Se establecen las foreign keys*/ 
@@ -155,21 +215,7 @@ FOREIGN KEY (ID_Person) REFERENCES LB.Person(ID_Number);
 
 /*se hacen los campos ID de tipo identity*/
 
---Para la tabla Person
-CREATE SEQUENCE person_seq
-START WITH 1
-INCREMENT BY 1
-MINVALUE 0;
 
-CREATE OR REPLACE TRIGGER person_trigger 
-BEFORE INSERT ON LB.Person 
-FOR EACH ROW
-WHEN (new.ID_Number IS NULL)
-BEGIN
-  SELECT person_seq.NEXTVAL
-  INTO   :new.ID_Number
-  FROM   dual;
-END;
 
 --Para la tabla Email
 CREATE SEQUENCE email_seq
@@ -346,5 +392,6 @@ BEGIN
   INTO   :new.id
   FROM   dual;
 END;
+
 
 
