@@ -39,7 +39,7 @@ INSERT INTO LB.Book_Clasification (clasification)
 VALUES ('Science-Fiction');
 
 INSERT INTO LB.Book_Clasification (clasification)
-VALUES ('Suspence-Thriller');
+VALUES ('Suspense-Thriller');
 
 INSERT INTO LB.Book_Clasification (clasification)
 VALUES ('Autobiography');
