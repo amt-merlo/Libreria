@@ -11,8 +11,8 @@ END insertPerson;
 
 BEGIN
   INSERT INTO LB.Person(ID_Number, Firstname, Lastname, Birthdate)
-  VALUES(118130171, 'Gaby', 'Gutierrez', '06/11/2001');
+  VALUES(112236656, 'Allis', 'Montero', "06/09/1880");
 END;
 select* from LB.Person;
-execute insertPerson(112236656, 'Allis', 'Montero', '06/09/1880');
+execute insertPerson(112236656, "Allis", "Montero", "06/09/1880");
 select * from LB.Person;
