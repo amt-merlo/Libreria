@@ -48,7 +48,7 @@ CREATE USER LB IDENTIFIED BY LB; -- ESTE SE HACE SOLO LA PRIMERA VEZ !!!!
 CREATE TABLE LB.Person (ID_Number INT PRIMARY KEY NOT NULL, 
                         Firstname NCHAR(30) NOT NULL, 
                         Lastname NCHAR(30) NOT NULL,
-                        Birhdate DATE NOT NULL);
+                        Birthdate DATE NOT NULL);
                         
 CREATE TABLE LB.Email (ID INT PRIMARY KEY NOT NULL, 
                        ID_Person INT NOT NULL, 

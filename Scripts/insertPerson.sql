@@ -8,3 +8,9 @@ BEGIN
     INSERT INTO LB.Person(ID_Number, Firstname, Lastname, Birthdate)
     VALUES(inID_Number, inFirstname, inLastname, inBirthdate);
 END insertPerson;
+
+BEGIN
+  INSERT INTO LB.Person(ID_Number, Firstname, Lastname, Birthdate)
+  VALUES(118130171, 'Gaby', 'Gutierrez', '06/11/2001');
+END;
+select* from LB.Person;
