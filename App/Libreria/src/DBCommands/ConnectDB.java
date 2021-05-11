@@ -13,11 +13,14 @@ import oracle.jdbc.OracleTypes;
  * @author Allison
  */
 public class ConnectDB {
+    private static String dbPassword = "HlMnd2320"; // (merloadmin) -- (HlMnd2320)
+    private static String dbUser = "sys as sysdba";
+    private static String dbHost = "jdbc:oracle:thin:@localhost:1521:DBTarea1"; // (jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC)-- (jdbc:oracle:thin:@localhost:1521:DBTarea1)
     
     public static void insertPerson(int ID_Number, String Firstname, String Lastname, String Birthdate) throws SQLException{
-        String host = "jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC";
-        String user = "sys as sysdba";
-        String password = "merloadmin";
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
         
         Connection con = DriverManager.getConnection(host, user, password);
         CallableStatement st = con.prepareCall("{ call InsertPerson(?, ?, ?, ?)");
@@ -30,9 +33,9 @@ public class ConnectDB {
     }
     
     public static void insertEmail(int id, String email) throws SQLException{
-        String host = "jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC";
-        String user = "sys as sysdba";
-        String password = "merloadmin";
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
         
         Connection con = DriverManager.getConnection(host, user, password);
         CallableStatement st = con.prepareCall("{ call InsertEmail(?, ?)");
@@ -43,9 +46,9 @@ public class ConnectDB {
     }
     
     public static void insertAddress(int id, String address) throws SQLException{
-        String host = "jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC";
-        String user = "sys as sysdba";
-        String password = "merloadmin";
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
         
         Connection con = DriverManager.getConnection(host, user, password);
         CallableStatement st = con.prepareCall("{ call InsertAddress(?, ?)");
@@ -56,9 +59,9 @@ public class ConnectDB {
     }
     
     public static ArrayList getBooks() throws SQLException{
-        String host = "jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC";
-        String user = "sys as sysdba";
-        String password = "merloadmin";
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
         
         
         Connection con = DriverManager.getConnection(host, user, password);
@@ -101,9 +104,9 @@ public class ConnectDB {
     }
     
     public static String extractClasification(int clas_ID) throws SQLException{
-        String host = "jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC";
-        String user = "sys as sysdba";
-        String password = "merloadmin";
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
         
         
         Connection con = DriverManager.getConnection(host, user, password);
@@ -127,9 +130,9 @@ public class ConnectDB {
         String Title, Author, PublishingHouse, Clasification;
         
         //Se conecta con la BD
-        String host = "jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC";
-        String user = "sys as sysdba";
-        String password = "merloadmin";
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
         
         
         Connection con = DriverManager.getConnection(host, user, password);
@@ -175,9 +178,9 @@ public class ConnectDB {
         String Title, Author, PublishingHouse, Clasification;
         
         //Se conecta con la BD
-        String host = "jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC";
-        String user = "sys as sysdba";
-        String password = "merloadmin";
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
         
         
         Connection con = DriverManager.getConnection(host, user, password);
@@ -223,9 +226,9 @@ public class ConnectDB {
         String Title, Author, PublishingHouse, Clasification;
         
         //Se conecta con la BD
-        String host = "jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC";
-        String user = "sys as sysdba";
-        String password = "merloadmin";
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
         
         
         Connection con = DriverManager.getConnection(host, user, password);
@@ -271,9 +274,9 @@ public class ConnectDB {
         String Title, Author, PublishingHouse, Clasification;
         
         //Se conecta con la BD
-        String host = "jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC";
-        String user = "sys as sysdba";
-        String password = "merloadmin";
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
         
         
         Connection con = DriverManager.getConnection(host, user, password);
@@ -319,9 +322,9 @@ public class ConnectDB {
         String Title, Author, PublishingHouse, Clasification;
         
         //Se conecta con la BD
-        String host = "jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC";
-        String user = "sys as sysdba";
-        String password = "merloadmin";
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
         
         
         Connection con = DriverManager.getConnection(host, user, password);
@@ -366,9 +369,9 @@ public class ConnectDB {
         String Title, Author, PublishingHouse, Clasification;
         
         //Se conecta con la BD
-        String host = "jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC";
-        String user = "sys as sysdba";
-        String password = "merloadmin";
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
         
         
         Connection con = DriverManager.getConnection(host, user, password);
@@ -413,9 +416,9 @@ public class ConnectDB {
         String Title, Author, PublishingHouse, Clasification;
         
         //Se conecta con la BD
-        String host = "jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC";
-        String user = "sys as sysdba";
-        String password = "merloadmin";
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
         
         
         Connection con = DriverManager.getConnection(host, user, password);
