@@ -32,6 +32,21 @@ public class ConnectDB {
         st.execute();
     }
     
+    public static void insertBook(int ID_Number, String Firstname, String Lastname, String Birthdate) throws SQLException{
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
+        
+        Connection con = DriverManager.getConnection(host, user, password);
+        CallableStatement st = con.prepareCall("{ call InsertBook(?, ?, ?, ?)");
+        
+        st.setInt(1, ID_Number);
+        st.setString(2, Firstname);
+        st.setString(3, Lastname);
+        st.setString(4, Birthdate);
+        st.execute();
+    }
+    
     public static void insertEmail(int id, String email) throws SQLException{
         String host = dbHost;
         String user = dbUser;

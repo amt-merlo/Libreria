@@ -246,6 +246,8 @@ public class RegistrarLibro extends javax.swing.JFrame {
         publishingHouse = txtFieldPHouse.getText();
         score = Integer.parseInt(txtFieldScore.getText());
         edition = Integer.parseInt(txtFieldEdition.getText());
+        
+        
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     /**
