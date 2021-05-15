@@ -96,7 +96,6 @@ public class Menu extends javax.swing.JFrame {
 
         btnRegistrarPersona.setBackground(new java.awt.Color(187, 187, 187));
         btnRegistrarPersona.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        btnRegistrarPersona.setForeground(new java.awt.Color(0, 0, 0));
         btnRegistrarPersona.setText("Register People");
         btnRegistrarPersona.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -111,11 +110,15 @@ public class Menu extends javax.swing.JFrame {
 
         btnRegistrarLibro.setBackground(new java.awt.Color(187, 187, 187));
         btnRegistrarLibro.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        btnRegistrarLibro.setForeground(new java.awt.Color(0, 0, 0));
         btnRegistrarLibro.setText("Register Book");
         btnRegistrarLibro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnRegistrarLibroMouseClicked(evt);
+            }
+        });
+        btnRegistrarLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarLibroActionPerformed(evt);
             }
         });
 
@@ -160,7 +163,6 @@ public class Menu extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(187, 187, 187));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Books");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -170,7 +172,6 @@ public class Menu extends javax.swing.JFrame {
 
         btnLoans.setBackground(new java.awt.Color(186, 186, 186));
         btnLoans.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnLoans.setForeground(new java.awt.Color(0, 0, 0));
         btnLoans.setText("Loans");
         btnLoans.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -218,12 +219,10 @@ public class Menu extends javax.swing.JFrame {
 
         btnEditBooks.setBackground(new java.awt.Color(186, 186, 186));
         btnEditBooks.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnEditBooks.setForeground(new java.awt.Color(0, 0, 0));
         btnEditBooks.setText("Edit Book");
 
         btnEditPerson.setBackground(new java.awt.Color(186, 186, 186));
         btnEditPerson.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnEditPerson.setForeground(new java.awt.Color(0, 0, 0));
         btnEditPerson.setText("Edit Person");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -286,6 +285,10 @@ public class Menu extends javax.swing.JFrame {
         ConsultaPrestamos consulta = new ConsultaPrestamos();
         consulta.setVisible(true);
     }//GEN-LAST:event_btnLoansMouseClicked
+
+    private void btnRegistrarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarLibroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistrarLibroActionPerformed
 
     /**
      * @param args the command line arguments

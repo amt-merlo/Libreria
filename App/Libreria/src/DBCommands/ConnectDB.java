@@ -7,6 +7,8 @@ package DBCommands;
 import java.sql.*;
 import java.util.ArrayList;
 import libreria.Book;
+import libreria.Loan;
+import libreria.Person;
 import oracle.jdbc.OracleTypes;
 /**
  *
@@ -17,13 +19,29 @@ public class ConnectDB {
     private static String dbUser = "sys as sysdba";
     private static String dbHost = "jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC"; // (jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC)-- (jdbc:oracle:thin:@localhost:1521:DBTarea1)
     
-    public static void insertPerson(int ID_Number, String Firstname, String Lastname, String Birthdate) throws SQLException{
+    public static void insertPerson(int ID_Number, int ID_PersonType, String Firstname, String Lastname, String Birthdate) throws SQLException{
         String host = dbHost;
         String user = dbUser;
         String password = dbPassword;
         
         Connection con = DriverManager.getConnection(host, user, password);
-        CallableStatement st = con.prepareCall("{ call InsertPerson(?, ?, ?, ?)");
+        CallableStatement st = con.prepareCall("{ call InsertPerson(?, ?, ?, ?, ?)");
+        
+        st.setInt(1, ID_Number);
+        st.setInt(2, ID_PersonType);
+        st.setString(3, Firstname);
+        st.setString(4, Lastname);
+        st.setString(5, Birthdate);
+        st.execute();
+    }
+    
+    public static void insertBook(int ID_Number, String Firstname, String Lastname, String Birthdate) throws SQLException{
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
+        
+        Connection con = DriverManager.getConnection(host, user, password);
+        CallableStatement st = con.prepareCall("{ call InsertBook(?, ?, ?, ?)");
         
         st.setInt(1, ID_Number);
         st.setString(2, Firstname);
@@ -451,5 +469,146 @@ public class ConnectDB {
         }
         
         return libros;
+    }
+    
+    public static ArrayList<String>  get_PersonType() throws SQLException{
+        ArrayList<String> tipos = new ArrayList<String>();
+        
+        //Se conecta con la BD
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
+        
+        
+        Connection con = DriverManager.getConnection(host, user, password);
+        CallableStatement st = con.prepareCall("{?= call get_PersonType}");
+        
+        st.registerOutParameter(1, OracleTypes.CURSOR);
+        st.executeQuery();
+        
+        ResultSet r = (ResultSet) st.getObject(1);
+        String tipoPersona;
+        while(r.next()){
+            
+            //Sacamos los datos de cada libro
+            tipoPersona = r.getString("Type");
+            System.out.println(tipoPersona);
+            //Se agrega el libro a la lista 
+            tipos.add(tipoPersona);
+        }
+        return tipos;
+    }
+    
+    public static int get_PersonTypeID(String Type) throws SQLException{
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
+        
+        
+        Connection con = DriverManager.getConnection(host, user, password);
+        CallableStatement st = con.prepareCall("{?= call get_PersonTypeID(?)}");
+        st.setString(2, Type);
+        st.registerOutParameter(1, OracleTypes.NUMBER);
+        
+        st.executeQuery();
+        
+        int ID = st.getInt(1);
+        return ID;
+    }
+    
+    public static ArrayList get_Loans() throws SQLException{
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
+        
+        
+        Connection con = DriverManager.getConnection(host, user, password);
+        CallableStatement st = con.prepareCall("{?= call get_Loans}");
+        st.registerOutParameter(1, OracleTypes.CURSOR);
+        
+        st.executeQuery();
+        ResultSet r = (ResultSet) st.getObject(1);
+        
+        //Lista para guardar los libros
+        ArrayList<Loan> prestamos = new ArrayList<Loan>();
+        
+        //Variables para datos de cada prestamo
+        int ID, ID_Person, ID_Item, Days_Amount;
+        String Loan_Date, Return_Date;
+        
+        while(r.next()){
+            ID = r.getInt("ID");
+            ID_Person = r.getInt("ID_Person");
+            ID_Item = r.getInt("ID_Item");
+            Days_Amount = r.getInt("Days_Amount");
+            Loan_Date = r.getString("Loan_Date");
+            Return_Date = r.getString("Return_Date");
+            System.out.println(ID);
+            //Creamos el objeto de tipo prestamo
+            Loan prestamo = new Loan(ID, ID_Person, ID_Item, Days_Amount,Loan_Date, Return_Date);
+            System.out.println(prestamo.getLoan_Date());
+            //Insertamos el prestamo dentro de la lista
+            prestamos.add(prestamo);
+            
+        }
+        return prestamos;
+    }
+    
+    public static String extractPersonType(int type_ID) throws SQLException{
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
+        
+        
+        Connection con = DriverManager.getConnection(host, user, password);
+        CallableStatement st = con.prepareCall("{?= call get_PersonTypeByID(?)}");
+        st.setInt(2, type_ID);
+        st.registerOutParameter(1, OracleTypes.VARCHAR);
+        
+        st.executeQuery();
+        
+        String type = st.getString(1);
+        return type;
+    }
+    
+    public static ArrayList<Person> get_People() throws SQLException{
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
+        
+        
+        Connection con = DriverManager.getConnection(host, user, password);
+        CallableStatement st = con.prepareCall("{?= call get_People}");
+        st.registerOutParameter(1, OracleTypes.CURSOR);
+        
+        st.executeQuery();
+        ResultSet r = (ResultSet) st.getObject(1);
+        
+        //Lista para guardar los libros
+        ArrayList<Person> personas = new ArrayList();
+        
+        //Variables para datos de cada prestamo
+        int ID, ID_PersonType;
+        String Firstname, Lastname, Birthdate, personType;
+        
+        while(r.next()){
+            ID = r.getInt("ID");
+            ID_PersonType = r.getInt("ID_PersonType");
+            Firstname = r.getString("Firstname");
+            Lastname = r.getString("Lastname");
+            Birthdate = r.getString("Birthdate");
+            System.out.println(Firstname);
+            
+            //Sacamos el tipo de persona
+            personType = extractPersonType(ID_PersonType);
+            
+            //Creamos el objeto de tipo prestamo
+            Person persona = new Person(ID, ID_PersonType, Firstname, Lastname,Birthdate);
+           
+            //Insertamos el prestamo dentro de la lista
+            personas.add(persona);
+            
+        }
+        return personas;
     }
 }
