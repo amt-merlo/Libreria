@@ -1,3 +1,46 @@
+--Se eliminan los triggers de auditoría
+DROP TRIGGER Person_OnInsert;
+DROP TRIGGER Person_OnUpdate;
+DROP TRIGGER Email_OnInsert;
+DROP TRIGGER Email_OnUpdate;
+DROP TRIGGER Address_OnInsert;
+DROP TRIGGER Address_OnUpdate;
+DROP TRIGGER PersonType_OnInsert;
+DROP TRIGGER PersonType_OnUpdate;
+DROP TRIGGER LoanControl_OnInsert;
+DROP TRIGGER LoanControl_OnUpdate;
+DROP TRIGGER Item_OnInsert;
+DROP TRIGGER Item_OnUpdate;
+DROP TRIGGER Book_OnInsert;
+DROP TRIGGER Book_OnUpdate;
+DROP TRIGGER BookClasification_OnInsert;
+DROP TRIGGER BookClasification_OnUpdate;
+DROP TRIGGER Videogame_OnInsert;
+DROP TRIGGER Videogame_OnUpdate;
+DROP TRIGGER Movie_OnInsert;
+DROP TRIGGER Movie_OnUpdate;
+DROP TRIGGER Genre_OnInsert;
+DROP TRIGGER Genre_OnUpdate;
+DROP TRIGGER Magazine_OnInsert;
+DROP TRIGGER Magazine_OnUpdate;
+
+--Se eliminan los procedures
+DROP PROCEDURE insertPerson;
+DROP PROCEDURE insertEmail;
+DROP PROCEDURE insertAddress;
+
+--Se eliminan las funciones
+DROP FUNCTION get_Books;
+DROP FUNCTION get_Clasification;
+DROP FUNCTION get_BooksFiltered1;
+DROP FUNCTION get_BooksFiltered2;
+DROP FUNCTION get_BooksFiltered3;
+DROP FUNCTION get_BooksFiltered4;
+DROP FUNCTION get_BooksFiltered5;
+DROP FUNCTION get_BooksFiltered6;
+DROP FUNCTION get_BooksFiltered7;
+
+
 --Se eliminan los triggers primero
 DROP TRIGGER person_trigger;
 DROP TRIGGER email_trigger;
@@ -45,7 +88,8 @@ DROP TABLE LB.Person;
 CREATE USER LB IDENTIFIED BY LB; -- ESTE SE HACE SOLO LA PRIMERA VEZ !!!!
 
 --Se crean las tablas necesarias
-CREATE TABLE LB.Person (ID_Number INT PRIMARY KEY NOT NULL, 
+CREATE TABLE LB.Person (ID_Number INT PRIMARY KEY NOT NULL,
+                        ID_PersonType INT NOT NULL,
                         Firstname NCHAR(30) NOT NULL, 
                         Lastname NCHAR(30) NOT NULL,
                         Birthdate DATE NOT NULL,
@@ -175,6 +219,10 @@ CREATE TABLE LB.Magazine(ID INT PRIMARY KEY NOT NULL,
 ALTER TABLE LB.Loan_Control
 ADD CONSTRAINT FK_Person
 FOREIGN KEY (ID_Person) REFERENCES LB.Person(ID_Number);
+
+ALTER TABLE LB.Person
+ADD CONSTRAINT FK_PersonType
+FOREIGN KEY (ID_PersonType) REFERENCES LB.Person_Type(ID);
 
 ALTER TABLE LB.Loan_Control
 ADD CONSTRAINT FK_ControlItem

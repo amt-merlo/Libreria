@@ -6,9 +6,10 @@
 package GUI;
 
 import java.awt.Color;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
@@ -23,7 +24,6 @@ public class RegistrarLibro extends javax.swing.JFrame {
     public RegistrarLibro() {
         initComponents();
         setFrame();
-        //this.fileChooserCover.setVisible(false);
     }
     
     public void setFrame(){
@@ -67,10 +67,8 @@ public class RegistrarLibro extends javax.swing.JFrame {
         btnRegister = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnCoverPage = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
         lblLinea = new javax.swing.JLabel();
-        fileChooserCover = new javax.swing.JFileChooser();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -98,6 +96,7 @@ public class RegistrarLibro extends javax.swing.JFrame {
         lblscore.setText("Score:");
 
         btnRegister.setBackground(new java.awt.Color(187, 187, 187));
+        btnRegister.setForeground(new java.awt.Color(0, 0, 0));
         btnRegister.setText("Register");
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -120,13 +119,6 @@ public class RegistrarLibro extends javax.swing.JFrame {
                 .addGap(106, 106, 106))
         );
 
-        btnCoverPage.setText("Upload Cover Page");
-        btnCoverPage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCoverPageActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -139,7 +131,7 @@ public class RegistrarLibro extends javax.swing.JFrame {
                     .addComponent(lblPHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblscore, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtFieldScore, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                     .addComponent(txtFieldPHouse, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
@@ -147,9 +139,7 @@ public class RegistrarLibro extends javax.swing.JFrame {
                     .addComponent(txtFieldAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                     .addComponent(txtFieldTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                     .addComponent(btnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(199, 199, 199)
-                .addComponent(btnCoverPage)
-                .addGap(378, 378, 378)
+                .addGap(114, 114, 114)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
@@ -159,9 +149,6 @@ public class RegistrarLibro extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 27, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtFieldTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblTitle))
@@ -183,11 +170,10 @@ public class RegistrarLibro extends javax.swing.JFrame {
                             .addComponent(txtFieldScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnCoverPage)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(16, 16, 16))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(25, Short.MAX_VALUE))))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 680, 290));
@@ -199,28 +185,9 @@ public class RegistrarLibro extends javax.swing.JFrame {
         lblLinea.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblLinea.setText("-------------------------------------------------");
         getContentPane().add(lblLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 280, 20));
-        getContentPane().add(fileChooserCover, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnCoverPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCoverPageActionPerformed
-        // TODO add your handling code here:
-        this.fileChooserCover.setVisible(true);
-        int returnVal = fileChooserCover.showOpenDialog(this);
-        if (returnVal == fileChooserCover.APPROVE_OPTION) {
-            File file = fileChooserCover.getSelectedFile();
-            try {
-              // What to do with the file, e.g. display it in a TextArea
-                System.out.println(new FileReader( file.getAbsolutePath() ));
-            } catch (IOException ex) {
-              System.out.println("problem accessing file"+file.getAbsolutePath());
-            }
-        } else {
-            System.out.println("File access cancelled by user.");
-        }
-        this.fileChooserCover.setVisible(false);
-    }//GEN-LAST:event_btnCoverPageActionPerformed
 
     /**
      * @param args the command line arguments
@@ -258,9 +225,7 @@ public class RegistrarLibro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCoverPage;
     private javax.swing.JButton btnRegister;
-    private javax.swing.JFileChooser fileChooserCover;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

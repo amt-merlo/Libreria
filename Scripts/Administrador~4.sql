@@ -32,3 +32,10 @@ select * from lb.book;
 select * from lb.address;
 select * from LB.item;
 select * from LB.book_clasification;
+
+delete from LB.Book;
+delete from LB.Item;
+
+INSERT INTO LB.loan_control(id_item, id_person, loan_date, return_date, days_amount)
+VALUES(1, 305250055, '10/05/2021', '13/05/2021', 4);
+select * from lb.loan_control;

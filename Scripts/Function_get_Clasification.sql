@@ -10,3 +10,5 @@ BEGIN
         RETURN clasificationout;
         
 END get_Clasification;
+
+select get_Clasification(1) from dual;
