@@ -9,6 +9,8 @@ BEGIN
         
 END get_People;
 
+select get_People from dual;
+
 CREATE OR REPLACE FUNCTION get_PersonTypeByID(pID IN NUMBER) RETURN VARCHAR2 
 AS
   typeOut VARCHAR2(30);

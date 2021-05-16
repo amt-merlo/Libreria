@@ -11,15 +11,15 @@ package libreria;
  */
 public class Person {
     private int ID;
-    private int ID_PersonType;
+    private String PersonType;
     private String Firstname;
     private String Lastname;
     private String Birthdate;
 
     //Constructor
-    public Person(int ID, int ID_PersonType, String Firstname, String Lastname, String Birthdate) {
+    public Person(int ID, String PersonType, String Firstname, String Lastname, String Birthdate) {
         this.ID = ID;
-        this.ID_PersonType = ID_PersonType;
+        this.PersonType = PersonType;
         this.Firstname = Firstname;
         this.Lastname = Lastname;
         this.Birthdate = Birthdate;
@@ -30,8 +30,8 @@ public class Person {
         return ID;
     }
 
-    public int getID_PersonType() {
-        return ID_PersonType;
+    public String getID_PersonType() {
+        return PersonType;
     }
 
     public String getFirstname() {
@@ -52,8 +52,8 @@ public class Person {
         this.ID = ID;
     }
 
-    public void setID_PersonType(int ID_PersonType) {
-        this.ID_PersonType = ID_PersonType;
+    public void setID_PersonType(String PersonType) {
+        this.PersonType = PersonType;
     }
 
     public void setFirstname(String Firstname) {

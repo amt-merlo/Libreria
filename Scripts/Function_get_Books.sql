@@ -4,7 +4,8 @@ AS
   
 BEGIN 
         OPEN pRecordSet FOR
-        select * from LB.Book;
+        select * from LB.Book
+        ORDER BY Title ASC;
         RETURN pRecordSet;
         
 END get_Books;

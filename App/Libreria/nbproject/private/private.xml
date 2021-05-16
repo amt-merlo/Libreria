@@ -3,10 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Allison/Desktop/Libreria/src/GUI/Consultas/ConsultaPrestamos.java</file>
-            <file>file:/C:/Users/Allison/Desktop/Libreria/src/GUI/EditarPersonas.java</file>
-            <file>file:/C:/Users/Allison/Desktop/Libreria/src/DBCommands/ConnectDB.java</file>
-            <file>file:/C:/Users/Allison/Desktop/Libreria/src/libreria/Person.java</file>
+            <file>file:/C:/Users/Allison/Documents/GitHub/Libreria/App/Libreria/src/GUI/Consultas/BorrowedBooks.java</file>
+            <file>file:/C:/Users/Allison/Documents/GitHub/Libreria/App/Libreria/src/GUI/Consultas/ConsultarPrestatarios.java</file>
+            <file>file:/C:/Users/Allison/Documents/GitHub/Libreria/App/Libreria/src/GUI/Menu.java</file>
         </group>
     </open-files>
 </project-private>

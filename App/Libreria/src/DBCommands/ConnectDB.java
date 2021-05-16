@@ -576,7 +576,7 @@ public class ConnectDB {
         String user = dbUser;
         String password = dbPassword;
         
-        
+        System.out.println("Entra a get_People()");
         Connection con = DriverManager.getConnection(host, user, password);
         CallableStatement st = con.prepareCall("{?= call get_People}");
         st.registerOutParameter(1, OracleTypes.CURSOR);
@@ -592,7 +592,7 @@ public class ConnectDB {
         String Firstname, Lastname, Birthdate, personType;
         
         while(r.next()){
-            ID = r.getInt("ID");
+            ID = r.getInt("ID_Number");
             ID_PersonType = r.getInt("ID_PersonType");
             Firstname = r.getString("Firstname");
             Lastname = r.getString("Lastname");
@@ -603,12 +603,29 @@ public class ConnectDB {
             personType = extractPersonType(ID_PersonType);
             
             //Creamos el objeto de tipo prestamo
-            Person persona = new Person(ID, ID_PersonType, Firstname, Lastname,Birthdate);
-           
+            Person persona = new Person(ID, personType, Firstname, Lastname,Birthdate);
+            System.out.println(Firstname);
             //Insertamos el prestamo dentro de la lista
             personas.add(persona);
             
         }
         return personas;
+    }
+    
+    public static void update_Person(int ID_Number, int ID_PersonType, String Firstname, String Lastname, String Birthdate) throws SQLException{
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
+        
+        Connection con = DriverManager.getConnection(host, user, password);
+        CallableStatement st = con.prepareCall("{ call update_Person(?, ?, ?, ?, ?)");
+        
+        st.setInt(1, ID_Number);
+        st.setInt(2, ID_PersonType);
+        st.setString(3, Firstname);
+        st.setString(4, Lastname);
+        st.setString(5, Birthdate);
+        
+        st.execute();
     }
 }

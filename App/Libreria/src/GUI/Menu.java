@@ -9,6 +9,7 @@ import GUI.Registro.RegistrarPersona;
 import GUI.Registro.RegistrarLibro;
 import GUI.Consultas.ConsultaLibros;
 import GUI.Consultas.ConsultaPrestamos;
+import GUI.Consultas.ConsultarPrestatarios;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -70,6 +71,8 @@ public class Menu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         btnLoans = new javax.swing.JButton();
+        btnBorrowers = new javax.swing.JButton();
+        btnBorrowedBooks = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         btnEditBooks = new javax.swing.JButton();
@@ -96,6 +99,7 @@ public class Menu extends javax.swing.JFrame {
 
         btnRegistrarPersona.setBackground(new java.awt.Color(187, 187, 187));
         btnRegistrarPersona.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        btnRegistrarPersona.setForeground(new java.awt.Color(0, 0, 0));
         btnRegistrarPersona.setText("Register People");
         btnRegistrarPersona.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -110,6 +114,7 @@ public class Menu extends javax.swing.JFrame {
 
         btnRegistrarLibro.setBackground(new java.awt.Color(187, 187, 187));
         btnRegistrarLibro.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        btnRegistrarLibro.setForeground(new java.awt.Color(0, 0, 0));
         btnRegistrarLibro.setText("Register Book");
         btnRegistrarLibro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -151,7 +156,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(40, 40, 40))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 310, 150));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 310, 150));
 
         jPanel2.setBackground(new java.awt.Color(236, 209, 137));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 4));
@@ -163,6 +168,7 @@ public class Menu extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(187, 187, 187));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Books");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -172,10 +178,31 @@ public class Menu extends javax.swing.JFrame {
 
         btnLoans.setBackground(new java.awt.Color(186, 186, 186));
         btnLoans.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnLoans.setForeground(new java.awt.Color(0, 0, 0));
         btnLoans.setText("Loans");
         btnLoans.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLoansMouseClicked(evt);
+            }
+        });
+
+        btnBorrowers.setBackground(new java.awt.Color(187, 187, 187));
+        btnBorrowers.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBorrowers.setForeground(new java.awt.Color(0, 0, 0));
+        btnBorrowers.setText("Borrowers");
+        btnBorrowers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBorrowersMouseClicked(evt);
+            }
+        });
+
+        btnBorrowedBooks.setBackground(new java.awt.Color(187, 187, 187));
+        btnBorrowedBooks.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBorrowedBooks.setForeground(new java.awt.Color(0, 0, 0));
+        btnBorrowedBooks.setText("Borrowed Books");
+        btnBorrowedBooks.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBorrowedBooksMouseClicked(evt);
             }
         });
 
@@ -191,8 +218,10 @@ public class Menu extends javax.swing.JFrame {
                         .addGap(31, 31, 31))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                            .addComponent(btnLoans, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLoans, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBorrowers, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBorrowedBooks, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(85, 85, 85))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -202,12 +231,16 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLoans)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnBorrowers)
+                .addGap(18, 18, 18)
+                .addComponent(btnBorrowedBooks)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, 310, 150));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 310, 250));
 
         jPanel3.setBackground(new java.awt.Color(172, 188, 138));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 4));
@@ -219,11 +252,18 @@ public class Menu extends javax.swing.JFrame {
 
         btnEditBooks.setBackground(new java.awt.Color(186, 186, 186));
         btnEditBooks.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnEditBooks.setForeground(new java.awt.Color(0, 0, 0));
         btnEditBooks.setText("Edit Book");
 
         btnEditPerson.setBackground(new java.awt.Color(186, 186, 186));
         btnEditPerson.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnEditPerson.setForeground(new java.awt.Color(0, 0, 0));
         btnEditPerson.setText("Edit Person");
+        btnEditPerson.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditPersonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -253,7 +293,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 560, 310, 150));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 580, 310, 150));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -289,6 +329,22 @@ public class Menu extends javax.swing.JFrame {
     private void btnRegistrarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarLibroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegistrarLibroActionPerformed
+
+    private void btnEditPersonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditPersonMouseClicked
+        // TODO add your handling code here:
+        EditarPersonas editar = new EditarPersonas();
+        editar.setVisible(true);
+    }//GEN-LAST:event_btnEditPersonMouseClicked
+
+    private void btnBorrowersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrowersMouseClicked
+        // TODO add your handling code here:
+        ConsultarPrestatarios consulta = new ConsultarPrestatarios();
+        consulta.setVisible(true);
+    }//GEN-LAST:event_btnBorrowersMouseClicked
+
+    private void btnBorrowedBooksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrowedBooksMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBorrowedBooksMouseClicked
 
     /**
      * @param args the command line arguments
@@ -326,6 +382,8 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBorrowedBooks;
+    private javax.swing.JButton btnBorrowers;
     private javax.swing.JButton btnEditBooks;
     private javax.swing.JButton btnEditPerson;
     private javax.swing.JButton btnLoans;
