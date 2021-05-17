@@ -5,6 +5,13 @@
  */
 package GUI.Consultas;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import libreria.Book;
+import libreria.BorrowedBook;
+import libreria.Person;
+
 /**
  *
  * @author Allison
@@ -17,7 +24,44 @@ public class BorrowedBooks extends javax.swing.JFrame {
     public BorrowedBooks() {
         initComponents();
     }
-
+    
+    private void llenarTabla(ArrayList<BorrowedBook> prestados){
+        DefaultTableModel model = new DefaultTableModel();
+        int cantidadLibros = prestados.size();
+       
+        //Columnas
+        model.addColumn("ID");
+        model.addColumn("Title");
+        model.addColumn("Clasification");
+        model.addColumn("Author");
+        model.addColumn("Edition");
+        model.addColumn("PublishingHouse");
+        model.addColumn("Score");
+       
+        if(cantidadLibros>0){
+            for(int i=0; i<cantidadLibros; i++){
+                BorrowedBook actual = prestados.get(i);
+                System.out.println(actual.getTitle());
+                model.addRow(new Object[]{actual.getID(),
+                                          actual.getTitle(),
+                                          actual.getClasification(), 
+                                          actual.getAuthor(), 
+                                          actual.getEdition(), 
+                                          actual.getPublishingHouse(), 
+                                          actual.getScore()});
+                tableLibros.setModel(model);
+                lblCantidad.setText(Integer.toString(cantidadLibros));
+            }
+        }else{
+            tableLibros.setModel(new DefaultTableModel());
+            lblCantidad.setText("0");
+            JOptionPane.showMessageDialog(null,"No hay coincidencias.");
+            
+        }
+        
+        
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,6 +72,9 @@ public class BorrowedBooks extends javax.swing.JFrame {
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableLibros = new javax.swing.JTable();
+        lblCantidad = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -35,21 +82,46 @@ public class BorrowedBooks extends javax.swing.JFrame {
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Consulting Borrowed Books");
 
+        tableLibros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tableLibros);
+
+        lblCantidad.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(328, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblTitulo)
-                .addGap(224, 224, 224))
+                .addGap(118, 118, 118)
+                .addComponent(lblCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(185, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(lblTitulo)
-                .addContainerGap(518, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTitulo)
+                    .addComponent(lblCantidad))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -91,6 +163,9 @@ public class BorrowedBooks extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblCantidad;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JTable tableLibros;
     // End of variables declaration//GEN-END:variables
 }

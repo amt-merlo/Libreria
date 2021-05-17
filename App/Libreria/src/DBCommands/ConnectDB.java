@@ -7,6 +7,7 @@ package DBCommands;
 import java.sql.*;
 import java.util.ArrayList;
 import libreria.Book;
+import libreria.BorrowedBook;
 import libreria.Loan;
 import libreria.Person;
 import oracle.jdbc.OracleTypes;
@@ -627,5 +628,50 @@ public class ConnectDB {
         st.setString(5, Birthdate);
         
         st.execute();
+    }
+    
+    public static ArrayList<BorrowedBook> get_BorrowedBooks() throws SQLException{
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
+        
+        Connection con = DriverManager.getConnection(host, user, password);
+        CallableStatement st = con.prepareCall("{?= get_BorrowedBooks}");
+        st.registerOutParameter(1, OracleTypes.CURSOR);
+        
+        st.executeQuery();
+        ResultSet r = (ResultSet) st.getObject(1);
+        
+        ArrayList<BorrowedBook> prestados = new ArrayList();
+        
+        //Variables para datos de cada libro
+        int ID, ID_Clasification, ID_Item, Edition, Score, Days_Amount;
+        String Title, Author, PublishingHouse, Clasification, Borrower;
+        
+        
+        while(r.next()){
+            
+            //Sacamos los datos de cada libro
+            ID = Integer.parseInt(r.getString("ID"));
+            ID_Item = Integer.parseInt(r.getString("ID_Item"));
+            Edition = Integer.parseInt(r.getString("Edition"));
+            Score = Integer.parseInt(r.getString("Score"));
+            Days_Amount = Integer.parseInt(r.getString("Days_Amount"));
+            
+            
+            Title = r.getString("Title");
+            Author = r.getString("Author");
+            PublishingHouse = r.getString("PublishingHouse");
+            Clasification = r.getString("Clasification");
+            Borrower = r.getString("ID_Person");
+            
+            
+            //Creamos un nuevo objeto de tipo libro
+            BorrowedBook book = new BorrowedBook(ID, ID_Item, Edition, Score, Days_Amount, Clasification, Title, Author, PublishingHouse, Borrower);
+            
+            //Se agrega el libro a la lista 
+            prestados.add(book);
+        }
+        return prestados;
     }
 }
