@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package DBCommands;
+import java.io.FileInputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import libreria.Book;
@@ -16,9 +17,9 @@ import oracle.jdbc.OracleTypes;
  * @author Allison
  */
 public class ConnectDB {
-    private static String dbPassword = "merloadmin"; // (merloadmin) -- (HlMnd2320)
+    private static String dbPassword = "HlMnd2320"; // (merloadmin) -- (HlMnd2320)
     private static String dbUser = "sys as sysdba";
-    private static String dbHost = "jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC"; // (jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC)-- (jdbc:oracle:thin:@localhost:1521:DBTarea1)
+    private static String dbHost = "jdbc:oracle:thin:@localhost:1521:DBTarea1"; // (jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC)-- (jdbc:oracle:thin:@localhost:1521:DBTarea1)
     
     public static void insertPerson(int ID_Number, int ID_PersonType, String Firstname, String Lastname, String Birthdate) throws SQLException{
         String host = dbHost;
@@ -36,19 +37,22 @@ public class ConnectDB {
         st.execute();
     }
     
-    public static void insertBook(int ID_Number, String Firstname, String Lastname, String Birthdate) throws SQLException{
+    public static void insertBook(String title, String author, String publishingHouse, int score, int edition, FileInputStream image) throws SQLException{
         String host = dbHost;
         String user = dbUser;
         String password = dbPassword;
-        
         Connection con = DriverManager.getConnection(host, user, password);
-        CallableStatement st = con.prepareCall("{ call InsertBook(?, ?, ?, ?)");
+        CallableStatement st = con.prepareCall("{ call InsertBook(?, ?, ?, ?, ?, ?)");
         
-        st.setInt(1, ID_Number);
-        st.setString(2, Firstname);
-        st.setString(3, Lastname);
-        st.setString(4, Birthdate);
+        st.setString(1, title);
+        st.setString(2, author);
+        st.setString(3, publishingHouse);
+        st.setInt(4, score);
+        st.setInt(5, edition);
+        st.setBinaryStream(6, image);
+        System.out.println("antes del execute");
         st.execute();
+        System.out.println("exito");
     }
     
     public static void insertEmail(int id, String email) throws SQLException{

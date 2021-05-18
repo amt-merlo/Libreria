@@ -11,6 +11,6 @@ END insertPerson;
 
 
 select* from LB.Person;
-execute insertPerson(112236656,1, 'Allis', 'Montero', '06/09/1880');
+execute insertPerson(112236656,1, 'Allis', 'Montero', TO_DATE('06/09/1880', 'dd/mm/yyyy'));
 select * from LB.Person;
 

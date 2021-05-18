@@ -5,8 +5,15 @@
  */
 package GUI.Registro;
 
+import DBCommands.ConnectDB;
+import static GUI.Registro.RegistrarPersona.direcciones;
+import static GUI.Registro.RegistrarPersona.emails;
 import java.awt.Color;
 import java.io.File;
+import java.io.FileInputStream;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 /**
  *
@@ -14,7 +21,6 @@ import javax.swing.ImageIcon;
  */
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 public class RegistrarLibro extends javax.swing.JFrame {
     String path;
 
@@ -224,6 +230,7 @@ public class RegistrarLibro extends javax.swing.JFrame {
                 else{
                     this.path = file.getAbsolutePath();
                     this.jPanel2.add(new JLabel(new ImageIcon(this.path)));
+                    System.out.println(this.path);
                 }
                 // It's an image (only BMP, GIF, JPG and PNG are recognized).
             } catch (Exception e) {
@@ -246,8 +253,22 @@ public class RegistrarLibro extends javax.swing.JFrame {
         publishingHouse = txtFieldPHouse.getText();
         score = Integer.parseInt(txtFieldScore.getText());
         edition = Integer.parseInt(txtFieldEdition.getText());
-        
-        
+        File file = new File(this.path);
+        FileInputStream image = null;
+        try{
+            image = new FileInputStream(file);
+        }
+        catch (Exception e){
+            System.out.println("oh got please no");
+        }
+        try {
+            //Se ingresa el libro en la BD
+            ConnectDB.insertBook(title,author, publishingHouse, score, edition, image);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistrarPersona.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error al insertar libro");
+        }
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     /**
