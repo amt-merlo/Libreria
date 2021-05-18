@@ -1,12 +1,13 @@
-CREATE OR REPLACE FUNCTION get_BookClasifications RETURN SYS_REFCURSOR 
+CREATE OR REPLACE FUNCTION get_BookClasifications RETURN SYS_REFCURSOR
 AS
-  pRecordSet SYS_REFCURSOR;
+  clasificationOut SYS_REFCURSOR;
   
 BEGIN 
-        OPEN pRecordSet FOR
-        select Clasification from LB.Book_Clasification
-        ORDER BY Clasification ASC;
-        RETURN pRecordSet;
+        OPEN clasificationout FOR
+        SELECT * FROM LB.book_clasification;
+        RETURN clasificationOut;
         
 END get_BookClasifications;
 
+select get_bookclasifications
+from DUAL;
