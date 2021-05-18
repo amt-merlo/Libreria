@@ -5,10 +5,11 @@
  */
 package GUI;
 
-import GUI.Consultas.BorrowedBooks;
 import GUI.Registro.RegistrarPersona;
 import GUI.Registro.RegistrarLibro;
 import GUI.Consultas.ConsultaLibros;
+import GUI.Consultas.ConsultaLibrosNoPrestados;
+import GUI.Consultas.ConsultaLibrosPrestados;
 import GUI.Consultas.ConsultaPrestamos;
 import GUI.Consultas.ConsultarPrestatarios;
 import java.awt.Color;
@@ -74,7 +75,6 @@ public class Menu extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         btnLoans = new javax.swing.JButton();
         btnBorrowers = new javax.swing.JButton();
-        btnBorrowedBooks = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         btnEditBooks = new javax.swing.JButton();
@@ -198,16 +198,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btnBorrowedBooks.setBackground(new java.awt.Color(187, 187, 187));
-        btnBorrowedBooks.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnBorrowedBooks.setForeground(new java.awt.Color(0, 0, 0));
-        btnBorrowedBooks.setText("Borrowed Books");
-        btnBorrowedBooks.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBorrowedBooksMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -219,12 +209,11 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnLoans, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnBorrowers, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnBorrowedBooks, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(85, 85, 85))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnLoans, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBorrowers, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(75, 75, 75))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,12 +226,10 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(btnBorrowers)
-                .addGap(18, 18, 18)
-                .addComponent(btnBorrowedBooks)
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 310, 250));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 310, 210));
 
         jPanel3.setBackground(new java.awt.Color(172, 188, 138));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 4));
@@ -295,7 +282,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 580, 310, 150));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 550, 310, 150));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -317,11 +304,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarPersonaActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-        //Book libro = new Book(1, 2, 3, 4, "Hola", "Hola2", "Hola3", "Hola4");
-        //System.out.println(libro.getAuthor());
-        ConsultaLibros consulta = new ConsultaLibros();
-        consulta.setVisible(true);
+        BooksSubMenu menu = new BooksSubMenu();
+        menu.setVisible(true);
         
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -346,12 +330,6 @@ public class Menu extends javax.swing.JFrame {
         ConsultarPrestatarios consulta = new ConsultarPrestatarios();
         consulta.setVisible(true);
     }//GEN-LAST:event_btnBorrowersMouseClicked
-
-    private void btnBorrowedBooksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrowedBooksMouseClicked
-        // TODO add your handling code here:
-        BorrowedBooks prestados = new BorrowedBooks();
-        prestados.setVisible(true);
-    }//GEN-LAST:event_btnBorrowedBooksMouseClicked
 
     /**
      * @param args the command line arguments
@@ -389,7 +367,6 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBorrowedBooks;
     private javax.swing.JButton btnBorrowers;
     private javax.swing.JButton btnEditBooks;
     private javax.swing.JButton btnEditPerson;
