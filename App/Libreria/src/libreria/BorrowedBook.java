@@ -11,7 +11,6 @@ package libreria;
  */
 public class BorrowedBook {
     private int ID;
-    private int ID_Item;
     private int Edition;
     private int Score;
     private int Days_Amount;
@@ -22,9 +21,8 @@ public class BorrowedBook {
     private String Borrower;
 
     //Constructor
-    public BorrowedBook(int ID, int ID_Item, int Edition, int Score, int Days_Amount, String Clasification, String Title, String Author, String PublishingHouse, String Borrower) {
+    public BorrowedBook(int ID, int Edition, int Score, int Days_Amount, String Clasification, String Title, String Author, String PublishingHouse, String Borrower) {
         this.ID = ID;
-        this.ID_Item = ID_Item;
         this.Edition = Edition;
         this.Score = Score;
         this.Days_Amount = Days_Amount;
@@ -41,9 +39,6 @@ public class BorrowedBook {
         this.ID = ID;
     }
 
-    public void setID_Item(int ID_Item) {
-        this.ID_Item = ID_Item;
-    }
 
     public void setEdition(int Edition) {
         this.Edition = Edition;
@@ -83,9 +78,6 @@ public class BorrowedBook {
         return ID;
     }
 
-    public int getID_Item() {
-        return ID_Item;
-    }
 
     public int getEdition() {
         return Edition;

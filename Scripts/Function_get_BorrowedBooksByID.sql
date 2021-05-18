@@ -1,9 +1,9 @@
 /*DOCUMENTACIÓN INTERNA
 Descripción: Función que utiliza un cursor para almacenar la consulta de libros con el filtro de título recibido por parámetro
 Autor principal: Allison Montero
-Fecha de creación: 11/05/2021
+Fecha de creación: 15/05/2021
 */
-CREATE OR REPLACE FUNCTION get_BorrowedBooks RETURN SYS_REFCURSOR 
+CREATE OR REPLACE FUNCTION get_BorrowedBooksByID(inID IN NUMBER) RETURN SYS_REFCURSOR 
 AS
   pRecordSet SYS_REFCURSOR;
   
@@ -28,10 +28,12 @@ BEGIN
     INNER JOIN LB.Loan_Control
     ON LB.Item.ID = lb.loan_control.id_item
     
+    INNER JOIN LB.Person
+    ON LB.Person.ID_Number = inID
+    
     ORDER BY LB.Book.Title;
     RETURN pRecordSet;
     
-END get_BorrowedBooks;
+END get_BorrowedBooksByID;
 
-
-drop function get_BorrowedBooks
+select get_BorrowedBooksByID(234) from dual;
