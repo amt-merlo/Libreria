@@ -28,6 +28,7 @@ DROP TRIGGER Magazine_OnUpdate;
 DROP PROCEDURE insertPerson;
 DROP PROCEDURE insertEmail;
 DROP PROCEDURE insertAddress;
+DROP PROCEDURE insertBook;
 
 --Se eliminan las funciones
 DROP FUNCTION get_Books;
