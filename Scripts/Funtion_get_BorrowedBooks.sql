@@ -33,5 +33,5 @@ BEGIN
     
 END get_BorrowedBooks;
 
-
+select get_BorrowedBooks from dual;
 drop function get_BorrowedBooks

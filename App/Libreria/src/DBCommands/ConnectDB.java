@@ -17,9 +17,9 @@ import oracle.jdbc.OracleTypes;
  * @author Allison
  */
 public class ConnectDB {
-    private static String dbPassword = "HlMnd2320"; // (merloadmin) -- (HlMnd2320)
+    private static String dbPassword = "merloadmin"; // (merloadmin) -- (HlMnd2320)
     private static String dbUser = "sys as sysdba";
-    private static String dbHost = "jdbc:oracle:thin:@localhost:1521:DBTarea1"; // (jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC)-- (jdbc:oracle:thin:@localhost:1521:DBTarea1)
+    private static String dbHost = "jdbc:oracle:thin:@localhost:1521/PROYECTOSTEC"; // (jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC)-- (jdbc:oracle:thin:@localhost:1521/DBTarea1)
     
     public static void insertPerson(int ID_Number, int ID_PersonType, String Firstname, String Lastname, String Birthdate) throws SQLException{
         String host = dbHost;
@@ -640,7 +640,7 @@ public class ConnectDB {
         String password = dbPassword;
         
         Connection con = DriverManager.getConnection(host, user, password);
-        CallableStatement st = con.prepareCall("{?= get_BorrowedBooks}");
+        CallableStatement st = con.prepareCall("{?=call get_BorrowedBooks}");
         st.registerOutParameter(1, OracleTypes.CURSOR);
         
         st.executeQuery();
@@ -657,7 +657,6 @@ public class ConnectDB {
             
             //Sacamos los datos de cada libro
             ID = Integer.parseInt(r.getString("ID"));
-            ID_Item = Integer.parseInt(r.getString("ID_Item"));
             Edition = Integer.parseInt(r.getString("Edition"));
             Score = Integer.parseInt(r.getString("Score"));
             Days_Amount = Integer.parseInt(r.getString("Days_Amount"));
@@ -671,11 +670,98 @@ public class ConnectDB {
             
             
             //Creamos un nuevo objeto de tipo libro
-            BorrowedBook book = new BorrowedBook(ID, ID_Item, Edition, Score, Days_Amount, Clasification, Title, Author, PublishingHouse, Borrower);
+            BorrowedBook book = new BorrowedBook(ID, Edition, Score, Days_Amount, Clasification, Title, Author, PublishingHouse, Borrower);
             
             //Se agrega el libro a la lista 
             prestados.add(book);
         }
         return prestados;
+    }
+    
+    public static ArrayList<BorrowedBook> get_BorrowedBooksByID(int ID_Number) throws SQLException{
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
+        
+        Connection con = DriverManager.getConnection(host, user, password);
+        CallableStatement st = con.prepareCall("{?= call get_BorrowedBooksByID(?)}");
+        st.setInt(2, ID_Number);
+        st.registerOutParameter(1, OracleTypes.CURSOR);
+        
+        st.executeQuery();
+        ResultSet r = (ResultSet) st.getObject(1);
+        
+        ArrayList<BorrowedBook> prestados = new ArrayList();
+        
+        //Variables para datos de cada libro
+        int ID, ID_Clasification, ID_Item, Edition, Score, Days_Amount;
+        String Title, Author, PublishingHouse, Clasification, Borrower;
+        
+        
+        while(r.next()){
+            
+            //Sacamos los datos de cada libro
+            ID = Integer.parseInt(r.getString("ID"));
+            Edition = Integer.parseInt(r.getString("Edition"));
+            Score = Integer.parseInt(r.getString("Score"));
+            Days_Amount = Integer.parseInt(r.getString("Days_Amount"));
+            
+            
+            Title = r.getString("Title");
+            Author = r.getString("Author");
+            PublishingHouse = r.getString("PublishingHouse");
+            Clasification = r.getString("Clasification");
+            Borrower = r.getString("ID_Person");
+            
+            
+            //Creamos un nuevo objeto de tipo libro
+            BorrowedBook book = new BorrowedBook(ID, Edition, Score, Days_Amount, Clasification, Title, Author, PublishingHouse, Borrower);
+            
+            //Se agrega el libro a la lista 
+            prestados.add(book);
+        }
+        return prestados;
+    }
+    
+    public static ArrayList<Book> get_NotBorrowed() throws SQLException{
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
+        
+        Connection con = DriverManager.getConnection(host, user, password);
+        CallableStatement st = con.prepareCall("{?=call get_notBorrowed}");
+        st.registerOutParameter(1, OracleTypes.CURSOR);
+        
+        st.executeQuery();
+        ResultSet r = (ResultSet) st.getObject(1);
+        
+        ArrayList<Book> libros = new ArrayList();
+        
+        //Variables para datos de cada libro
+        int ID, ID_Clasification, ID_Item, Edition, Score, Days_Amount;
+        String Title, Author, PublishingHouse, Clasification, Borrower;
+        
+        
+        while(r.next()){
+            
+            //Sacamos los datos de cada libro
+            ID = Integer.parseInt(r.getString("ID"));
+            ID_Clasification = Integer.parseInt(r.getString("ID_Clasification"));
+            ID_Item = Integer.parseInt(r.getString("ID_Item"));
+            Edition = Integer.parseInt(r.getString("Edition"));
+            Score = Integer.parseInt(r.getString("Score"));
+            
+            Title = r.getString("Title");
+            Author = r.getString("Author");
+            PublishingHouse = r.getString("PublishingHouse");
+            Clasification = extractClasification(ID_Clasification);
+            //Creamos un nuevo objeto de tipo libro
+            Book book = new Book(ID, ID_Item, Edition, Score, Clasification, Title, Author, PublishingHouse);
+            
+            
+            
+            libros.add(book);
+        }
+        return libros;
     }
 }
