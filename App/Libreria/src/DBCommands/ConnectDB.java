@@ -476,6 +476,33 @@ public class ConnectDB {
         return libros;
     }
     
+    public static ArrayList<String>  get_BookClasifications() throws SQLException{
+        ArrayList<String> tipos = new ArrayList<String>();
+        
+        //Se conecta con la BD
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
+        
+        
+        Connection con = DriverManager.getConnection(host, user, password);
+        CallableStatement st = con.prepareCall("{?= call get_BookClasifications}");
+        
+        st.registerOutParameter(1, OracleTypes.CURSOR);
+        st.executeQuery();
+        ResultSet r = (ResultSet) st.getObject(1);
+        String clasificacion;
+        while(r.next()){
+            
+            //Sacamos los datos de cada libro
+            clasificacion = r.getString("Clasification");
+            System.out.println(clasificacion);
+            //Se agrega el libro a la lista 
+            tipos.add(clasificacion);
+        }
+        return tipos;
+    }
+    
     public static ArrayList<String>  get_PersonType() throws SQLException{
         ArrayList<String> tipos = new ArrayList<String>();
         
@@ -503,6 +530,8 @@ public class ConnectDB {
         }
         return tipos;
     }
+    
+    
     
     public static int get_PersonTypeID(String Type) throws SQLException{
         String host = dbHost;
