@@ -5,6 +5,21 @@
  */
 package GUI.Consultas;
 
+<<<<<<< Updated upstream
+=======
+import DBCommands.ConnectDB;
+import java.awt.Color;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import libreria.Book;
+import libreria.BorrowedBook;
+import libreria.Person;
+
+>>>>>>> Stashed changes
 /**
  *
  * @author Allison
@@ -16,8 +31,63 @@ public class BorrowedBooks extends javax.swing.JFrame {
      */
     public BorrowedBooks() {
         initComponents();
+        
+        //Ubicarlo en el centro
+        this.setLocationRelativeTo(null);
+        //Color del JFrame
+        this.getContentPane().setBackground(Color.decode("#ECD189")); //F5CC7E o F5D28E o F3CC89
+        
+        ArrayList<BorrowedBook> prestados = new ArrayList();
+        
+        try {
+            prestados = ConnectDB.get_BorrowedBooks();
+            llenarTabla(prestados);
+        } catch (SQLException ex) {
+            Logger.getLogger(BorrowedBooks.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+<<<<<<< Updated upstream
 
+=======
+    
+    private void llenarTabla(ArrayList<BorrowedBook> prestados){
+        DefaultTableModel model = new DefaultTableModel();
+        int cantidadLibros = prestados.size();
+       
+        //Columnas
+        model.addColumn("ID");
+        model.addColumn("Title");
+        model.addColumn("Clasification");
+        model.addColumn("Author");
+        model.addColumn("Edition");
+        model.addColumn("PublishingHouse");
+        model.addColumn("Score");
+        model.addColumn("Borrower");
+        model.addColumn("Days Borrowed");
+       
+        if(cantidadLibros>0){
+            for(int i=0; i<cantidadLibros; i++){
+                BorrowedBook actual = prestados.get(i);
+                System.out.println(actual.getTitle());
+                model.addRow(new Object[]{actual.getID(),
+                                          actual.getTitle(),
+                                          actual.getClasification(), 
+                                          actual.getAuthor(), 
+                                          actual.getEdition(), 
+                                          actual.getPublishingHouse(), 
+                                          actual.getScore(),
+                                          actual.getBorrower(),
+                                          actual.getDays_Amount()});
+                tableLibros.setModel(model);
+                lblCantidad.setText(Integer.toString(cantidadLibros));
+            }
+        }else{
+            tableLibros.setModel(new DefaultTableModel());
+            lblCantidad.setText("0");
+            JOptionPane.showMessageDialog(null,"No hay coincidencias.");   
+        }
+    }
+>>>>>>> Stashed changes
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,32 +98,200 @@ public class BorrowedBooks extends javax.swing.JFrame {
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
+<<<<<<< Updated upstream
+=======
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableLibros = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        lblCantidad = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        lblTitulo2 = new javax.swing.JLabel();
+        txtFieldID = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        btnFilter = new javax.swing.JButton();
+        btnRestart = new javax.swing.JButton();
+>>>>>>> Stashed changes
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        lblTitulo.setFont(new java.awt.Font("Segoe Script", 0, 24)); // NOI18N
+        lblTitulo.setFont(new java.awt.Font("Segoe Script", 0, 28)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Consulting Borrowed Books");
 
+<<<<<<< Updated upstream
+=======
+        tableLibros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Title", "Clasification", "Author", "Edition", "Publishing House", "Score", "Borrower", "Days Borrowed"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tableLibros);
+
+        jPanel1.setBackground(new java.awt.Color(172, 188, 138));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
+
+        lblCantidad.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lblCantidad.setForeground(new java.awt.Color(255, 255, 255));
+        lblCantidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Total Books Consulted:");
+
+        lblTitulo2.setFont(new java.awt.Font("Segoe Script", 0, 18)); // NOI18N
+        lblTitulo2.setForeground(new java.awt.Color(0, 0, 0));
+        lblTitulo2.setText("Filtered Search");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Borrower ID: ");
+
+        btnFilter.setBackground(new java.awt.Color(219, 107, 92));
+        btnFilter.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnFilter.setForeground(new java.awt.Color(255, 255, 255));
+        btnFilter.setText("Filter");
+        btnFilter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFilterMouseClicked(evt);
+            }
+        });
+
+        btnRestart.setBackground(new java.awt.Color(242, 180, 118));
+        btnRestart.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRestart.setForeground(new java.awt.Color(255, 255, 255));
+        btnRestart.setText("Restart Search");
+        btnRestart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRestartMouseClicked(evt);
+            }
+        });
+
+>>>>>>> Stashed changes
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+<<<<<<< Updated upstream
                 .addContainerGap(328, Short.MAX_VALUE)
                 .addComponent(lblTitulo)
                 .addGap(224, 224, 224))
+=======
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTitulo)
+                .addGap(98, 98, 98)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(174, 174, 174)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblTitulo2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnFilter)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnRestart))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1048, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(71, Short.MAX_VALUE))
+>>>>>>> Stashed changes
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< Updated upstream
                 .addGap(19, 19, 19)
                 .addComponent(lblTitulo)
                 .addContainerGap(518, Short.MAX_VALUE))
+=======
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(lblTitulo))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblTitulo2)))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFilter)
+                    .addComponent(btnRestart))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+>>>>>>> Stashed changes
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnFilterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFilterMouseClicked
+        //Sacamos el ID a consultar
+        int ID = Integer.parseInt(txtFieldID.getText());
+        
+        ArrayList<BorrowedBook> prestados = new ArrayList();
+        try {
+            prestados = ConnectDB.get_BorrowedBooksByID(ID);
+            llenarTabla(prestados);
+        } catch (SQLException ex) {
+            Logger.getLogger(BorrowedBooks.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnFilterMouseClicked
+
+    private void btnRestartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRestartMouseClicked
+        // TODO add your handling code here:
+        ArrayList<BorrowedBook> prestados = new ArrayList();
+        try {
+            prestados = ConnectDB.get_BorrowedBooks();
+            llenarTabla(prestados);
+        } catch (SQLException ex) {
+            Logger.getLogger(BorrowedBooks.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnRestartMouseClicked
 
     /**
      * @param args the command line arguments
@@ -91,6 +329,20 @@ public class BorrowedBooks extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+<<<<<<< Updated upstream
     private javax.swing.JLabel lblTitulo;
+=======
+    private javax.swing.JButton btnFilter;
+    private javax.swing.JButton btnRestart;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblCantidad;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblTitulo2;
+    private javax.swing.JTable tableLibros;
+    private javax.swing.JTextField txtFieldID;
+>>>>>>> Stashed changes
     // End of variables declaration//GEN-END:variables
 }

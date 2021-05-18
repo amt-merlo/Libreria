@@ -80,7 +80,7 @@ public class ConnectDB {
         String host = dbHost;
         String user = dbUser;
         String password = dbPassword;
-        
+        System.out.println("Entra a getBooks()");
         
         Connection con = DriverManager.getConnection(host, user, password);
         CallableStatement st = con.prepareCall("{?= call get_Books}");
@@ -628,4 +628,96 @@ public class ConnectDB {
         
         st.execute();
     }
+<<<<<<< Updated upstream
+=======
+    
+    public static ArrayList<BorrowedBook> get_BorrowedBooks() throws SQLException{
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
+        
+        Connection con = DriverManager.getConnection(host, user, password);
+        CallableStatement st = con.prepareCall("{?= call get_BorrowedBooks}");
+        st.registerOutParameter(1, OracleTypes.CURSOR);
+        
+        st.executeQuery();
+        ResultSet r = (ResultSet) st.getObject(1);
+        
+        ArrayList<BorrowedBook> prestados = new ArrayList();
+        
+        //Variables para datos de cada libro
+        int ID, ID_Clasification, ID_Item, Edition, Score, Days_Amount;
+        String Title, Author, PublishingHouse, Clasification, Borrower;
+        
+        
+        while(r.next()){
+            
+            //Sacamos los datos de cada libro
+            ID = Integer.parseInt(r.getString("ID"));
+            Edition = Integer.parseInt(r.getString("Edition"));
+            Score = Integer.parseInt(r.getString("Score"));
+            Days_Amount = Integer.parseInt(r.getString("Days_Amount"));
+            
+            
+            Title = r.getString("Title");
+            Author = r.getString("Author");
+            PublishingHouse = r.getString("PublishingHouse");
+            Clasification = r.getString("Clasification");
+            Borrower = r.getString("ID_Person");
+            
+            
+            //Creamos un nuevo objeto de tipo libro
+            BorrowedBook book = new BorrowedBook(ID, Edition, Score, Days_Amount, Clasification, Title, Author, PublishingHouse, Borrower);
+            
+            //Se agrega el libro a la lista 
+            prestados.add(book);
+        }
+        return prestados;
+    }
+    
+    public static ArrayList<BorrowedBook> get_BorrowedBooksByID(int ID_Number) throws SQLException{
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
+        
+        Connection con = DriverManager.getConnection(host, user, password);
+        CallableStatement st = con.prepareCall("{?= call get_BorrowedBooksByID(?)}");
+        st.setInt(2, ID_Number);
+        st.registerOutParameter(1, OracleTypes.CURSOR);
+        
+        st.executeQuery();
+        ResultSet r = (ResultSet) st.getObject(1);
+        
+        ArrayList<BorrowedBook> prestados = new ArrayList();
+        
+        //Variables para datos de cada libro
+        int ID, ID_Clasification, ID_Item, Edition, Score, Days_Amount;
+        String Title, Author, PublishingHouse, Clasification, Borrower;
+        
+        
+        while(r.next()){
+            
+            //Sacamos los datos de cada libro
+            ID = Integer.parseInt(r.getString("ID"));
+            Edition = Integer.parseInt(r.getString("Edition"));
+            Score = Integer.parseInt(r.getString("Score"));
+            Days_Amount = Integer.parseInt(r.getString("Days_Amount"));
+            
+            
+            Title = r.getString("Title");
+            Author = r.getString("Author");
+            PublishingHouse = r.getString("PublishingHouse");
+            Clasification = r.getString("Clasification");
+            Borrower = r.getString("ID_Person");
+            
+            
+            //Creamos un nuevo objeto de tipo libro
+            BorrowedBook book = new BorrowedBook(ID, Edition, Score, Days_Amount, Clasification, Title, Author, PublishingHouse, Borrower);
+            
+            //Se agrega el libro a la lista 
+            prestados.add(book);
+        }
+        return prestados;
+    }
+>>>>>>> Stashed changes
 }

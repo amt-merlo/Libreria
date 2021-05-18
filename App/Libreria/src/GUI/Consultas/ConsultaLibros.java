@@ -28,10 +28,12 @@ public class ConsultaLibros extends javax.swing.JFrame {
         initComponents();
         
         //Se crea el arreglo que guardará los libros
-        ArrayList<Book> libros = new ArrayList<Book>();
+        ArrayList<Book> libros = new ArrayList();
         
         //Se llena el arreglo con los libros registrados en la DB
+        
         try {
+            System.out.println("Entra a try");
             libros = ConnectDB.getBooks();
         } catch (SQLException ex) {
             Logger.getLogger(ConsultaLibros.class.getName()).log(Level.SEVERE, null, ex);
@@ -76,12 +78,8 @@ public class ConsultaLibros extends javax.swing.JFrame {
         }else{
             tableBooks.setModel(new DefaultTableModel());
             lblCantidad.setText("0");
-            JOptionPane.showMessageDialog(null,"No hay coincidencias.");
-            
+            JOptionPane.showMessageDialog(null,"No hay coincidencias.");   
         }
-        
-        
-        
     }
 
     /**
@@ -205,7 +203,7 @@ public class ConsultaLibros extends javax.swing.JFrame {
 
         lblCantTitulo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCantTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCantTitulo.setText("Total de Libros Consultados:");
+        lblCantTitulo.setText("Total Books Consulted:");
 
         btnRestart.setBackground(new java.awt.Color(172, 188, 138));
         btnRestart.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N

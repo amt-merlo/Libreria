@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import GUI.Consultas.BorrowedBooks;
 import GUI.Registro.RegistrarPersona;
 import GUI.Registro.RegistrarLibro;
 import GUI.Consultas.ConsultaLibros;
@@ -16,6 +17,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import libreria.Book;
 
 /**
  *
@@ -316,8 +318,11 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
+        //Book libro = new Book(1, 2, 3, 4, "Hola", "Hola2", "Hola3", "Hola4");
+        //System.out.println(libro.getAuthor());
         ConsultaLibros consulta = new ConsultaLibros();
         consulta.setVisible(true);
+        
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void btnLoansMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoansMouseClicked
@@ -344,6 +349,8 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnBorrowedBooksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrowedBooksMouseClicked
         // TODO add your handling code here:
+        BorrowedBooks prestados = new BorrowedBooks();
+        prestados.setVisible(true);
     }//GEN-LAST:event_btnBorrowedBooksMouseClicked
 
     /**
