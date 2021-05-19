@@ -273,6 +273,7 @@ public class RegistrarLibro extends javax.swing.JFrame {
                 else{
                     this.path = file.getAbsolutePath();
                     this.jPanel2.add(new JLabel(new ImageIcon(this.path)));
+                    this.jPanel2.setVisible(true);
                     System.out.println(this.path);
                 }
                 // It's an image (only BMP, GIF, JPG and PNG are recognized).
@@ -288,7 +289,7 @@ public class RegistrarLibro extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-        String title, author, publishingHouse;
+        String title, author, publishingHouse, clasification;
         int score, edition;
         
         title = txtFieldTitle.getText();
@@ -296,17 +297,19 @@ public class RegistrarLibro extends javax.swing.JFrame {
         publishingHouse = txtFieldPHouse.getText();
         score = Integer.parseInt(txtFieldScore.getText());
         edition = Integer.parseInt(txtFieldEdition.getText());
+        clasification = cBoxClasification.getSelectedItem().toString();
         File file = new File(this.path);
         FileInputStream image = null;
         try{
             image = new FileInputStream(file);
         }
         catch (Exception e){
-            System.out.println("oh got please no");
+            System.out.println("No inserta imagen");
         }
         try {
             //Se ingresa el libro en la BD
-            ConnectDB.insertBook(title,author, publishingHouse, score, edition, image);
+            int clasi = ConnectDB.extractClasificationID(clasification);
+            ConnectDB.insertBook(title,author, publishingHouse, score, edition, image,clasi);
             
         } catch (SQLException ex) {
             Logger.getLogger(RegistrarPersona.class.getName()).log(Level.SEVERE, null, ex);

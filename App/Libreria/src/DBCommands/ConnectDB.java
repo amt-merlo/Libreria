@@ -17,9 +17,9 @@ import oracle.jdbc.OracleTypes;
  * @author Allison
  */
 public class ConnectDB {
-    private static String dbPassword = "merloadmin"; // (merloadmin) -- (HlMnd2320)
+    private static String dbPassword = "HlMnd2320"; // (merloadmin) -- (HlMnd2320)
     private static String dbUser = "sys as sysdba";
-    private static String dbHost = "jdbc:oracle:thin:@localhost:1521/PROYECTOSTEC"; // (jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC)-- (jdbc:oracle:thin:@localhost:1521/DBTarea1)
+    private static String dbHost = "jdbc:oracle:thin:@localhost:1521/DBTarea1"; // (jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC)-- (jdbc:oracle:thin:@localhost:1521/DBTarea1)
     
     public static void insertPerson(int ID_Number, int ID_PersonType, String Firstname, String Lastname, String Birthdate) throws SQLException{
         String host = dbHost;
@@ -37,19 +37,21 @@ public class ConnectDB {
         st.execute();
     }
     
-    public static void insertBook(String title, String author, String publishingHouse, int score, int edition, FileInputStream image) throws SQLException{
+    public static void insertBook(String title, String author, String publishingHouse, int score, int edition, FileInputStream image, int clasification) throws SQLException{
         String host = dbHost;
         String user = dbUser;
         String password = dbPassword;
         Connection con = DriverManager.getConnection(host, user, password);
         CallableStatement st = con.prepareCall("{ call InsertBook(?, ?, ?, ?, ?, ?)");
+        System.out.println("en la llamada");
         
         st.setString(1, title);
-        st.setString(2, author);
-        st.setString(3, publishingHouse);
-        st.setInt(4, score);
-        st.setInt(5, edition);
-        st.setBinaryStream(6, image);
+        st.setInt(2, clasification);
+        st.setString(3, author);
+        st.setString(4, publishingHouse);
+        st.setInt(5, score);
+        st.setInt(6, edition);
+        st.setBinaryStream(7, image);
         System.out.println("antes del execute");
         st.execute();
         System.out.println("exito");
@@ -141,6 +143,23 @@ public class ConnectDB {
         
         String clasification = st.getString(1);
         return clasification;
+    }
+    
+    public static int extractClasificationID(String clasi) throws SQLException{
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
+        
+        
+        Connection con = DriverManager.getConnection(host, user, password);
+        CallableStatement st = con.prepareCall("{?= call get_ClasificationID(?)}");
+        st.setString(2, clasi);
+        st.registerOutParameter(1, OracleTypes.VARCHAR);
+        
+        st.executeQuery();
+        
+        int ID = st.getInt(1);
+        return ID;
     }
     
     //Consulta por un libro con los tres filtros
