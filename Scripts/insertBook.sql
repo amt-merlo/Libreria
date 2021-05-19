@@ -4,14 +4,14 @@ Autor principal: Gabriela Gutiérrez
 Fecha de creaciï¿½n: 1/05/2021
 */
 
-create or replace PROCEDURE insertBook(inTitle IN VARCHAR2, inAuthor IN VARCHAR2, inPublishingHouse IN VARCHAR2, inScore IN NUMBER, inEdition IN NUMBER, inCoverPage IN BLOB) AS
+create or replace PROCEDURE insertBook(inTitle IN VARCHAR2, inClasification IN NUMBER, inAuthor IN VARCHAR2, inPublishingHouse IN VARCHAR2, inScore IN NUMBER, inEdition IN NUMBER, inCoverPage IN BLOB) AS
 BEGIN
-    INSERT INTO LB.BOOK(Title, Author, EDITION, CoverPage, PublishingHouse, Score)
-    VALUES(inTitle, inAuthor, inEdition, inCoverPage, inPublishingHouse, inScore);
+    INSERT INTO LB.BOOK(Title, ID_Clasification, Author, EDITION, CoverPage, PublishingHouse, Score)
+    VALUES(inTitle, inClasification, inAuthor, inEdition, inCoverPage, inPublishingHouse, inScore);
 END insertBook;
 
 
-execute insertBook('title', 'autrhg', 'house', 5, 2, null);
+execute insertBook('title', 'Fiction', 'autrhg', 'house', 5, 2, null);
 SELECT * FROM LB.BOOK;
 
 --, inCoverPage IN BLOB
