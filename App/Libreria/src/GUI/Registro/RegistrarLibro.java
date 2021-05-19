@@ -274,6 +274,8 @@ public class RegistrarLibro extends javax.swing.JFrame {
                     this.path = file.getAbsolutePath();
                     this.jPanel2.add(new JLabel(new ImageIcon(this.path)));
                     this.jPanel2.setVisible(true);
+                    //this.jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(this.path)));
+                    this.jLabel1.setIcon((new ImageIcon(this.path)));
                     System.out.println(this.path);
                 }
                 // It's an image (only BMP, GIF, JPG and PNG are recognized).

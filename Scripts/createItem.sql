@@ -4,8 +4,12 @@ Autor principal: Gabriela Gutiérrez
 Fecha de creaciï¿½n: 1/05/2021
 */
 
-create or replace PROCEDURE createItem AS
+create or replace PROCEDURE createItem(inName IN VARCHAR2) AS
 BEGIN
-    INSERT INTO LB.BOOK(Title, ID_Clasification, Author, EDITION, CoverPage, PublishingHouse, Score)
-    VALUES(inTitle, inClasification, inAuthor, inEdition, inCoverPage, inPublishingHouse, inScore);
-END insertBook;
+    INSERT INTO LB.Item(Name, Description, on_loan)
+    VALUES(inName, 'Item del libro.', 0);
+END createItem;
+
+execute createItem('Hola Mundo');
+
+Select * from LB.Item;

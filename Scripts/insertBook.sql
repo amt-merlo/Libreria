@@ -11,7 +11,7 @@ BEGIN
 END insertBook;
 
 
-Select insertBook('title', 1, 'autrhg', 'house', 5, 2, null) from dual;
+Select insertBook('title', 1, 1, 'autrhg', 'house', 5, 2, null) from dual;
 SELECT * FROM LB.BOOK;
 
 --, inCoverPage IN BLOB
