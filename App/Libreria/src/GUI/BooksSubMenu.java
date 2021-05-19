@@ -41,8 +41,6 @@ public class BooksSubMenu extends javax.swing.JFrame {
         btnNotBorrowed = new javax.swing.JButton();
         btnBooks = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jPanel1.setBackground(new java.awt.Color(242, 180, 118));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
 

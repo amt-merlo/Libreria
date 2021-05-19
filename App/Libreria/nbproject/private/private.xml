@@ -4,9 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Allison/Documents/GitHub/Libreria/App/Libreria/src/GUI/Consultas/ConsultaLibros.java</file>
-            <file>file:/C:/Users/Allison/Documents/GitHub/Libreria/App/Libreria/src/GUI/Consultas/ConsultaLibrosNoPrestados.java</file>
-            <file>file:/C:/Users/Allison/Documents/GitHub/Libreria/App/Libreria/src/GUI/Menu.java</file>
-            <file>file:/C:/Users/Allison/Documents/GitHub/Libreria/App/Libreria/src/GUI/BooksSubMenu.java</file>
+            <file>file:/C:/Users/Allison/Documents/GitHub/Libreria/App/Libreria/src/GUI/Registro/RegistrarLibro.java</file>
+            <file>file:/C:/Users/Allison/Documents/GitHub/Libreria/App/Libreria/src/DBCommands/ConnectDB.java</file>
+            <file>file:/C:/Users/Allison/Documents/GitHub/Libreria/App/Libreria/src/GUI/EditarLibros.java</file>
+            <file>file:/C:/Users/Allison/Documents/GitHub/Libreria/App/Libreria/src/GUI/EditarPersonas.java</file>
         </group>
     </open-files>
 </project-private>

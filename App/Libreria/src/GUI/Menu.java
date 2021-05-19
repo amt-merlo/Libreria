@@ -243,6 +243,11 @@ public class Menu extends javax.swing.JFrame {
         btnEditBooks.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnEditBooks.setForeground(new java.awt.Color(0, 0, 0));
         btnEditBooks.setText("Edit Book");
+        btnEditBooks.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditBooksMouseClicked(evt);
+            }
+        });
 
         btnEditPerson.setBackground(new java.awt.Color(186, 186, 186));
         btnEditPerson.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -330,6 +335,12 @@ public class Menu extends javax.swing.JFrame {
         ConsultarPrestatarios consulta = new ConsultarPrestatarios();
         consulta.setVisible(true);
     }//GEN-LAST:event_btnBorrowersMouseClicked
+
+    private void btnEditBooksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditBooksMouseClicked
+        // TODO add your handling code here:
+        EditarLibros editar = new EditarLibros();
+        editar.setVisible(true);
+    }//GEN-LAST:event_btnEditBooksMouseClicked
 
     /**
      * @param args the command line arguments
