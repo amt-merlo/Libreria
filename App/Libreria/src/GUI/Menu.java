@@ -7,18 +7,17 @@ package GUI;
 
 import GUI.Registro.RegistrarPersona;
 import GUI.Registro.RegistrarLibro;
-import GUI.Consultas.ConsultaLibros;
-import GUI.Consultas.ConsultaLibrosNoPrestados;
-import GUI.Consultas.ConsultaLibrosPrestados;
 import GUI.Consultas.ConsultaPrestamos;
 import GUI.Consultas.ConsultarPrestatarios;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import libreria.Book;
 
 /**
  *
@@ -79,6 +78,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnEditBooks = new javax.swing.JButton();
         btnEditPerson = new javax.swing.JButton();
+        btnManual = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -101,7 +101,6 @@ public class Menu extends javax.swing.JFrame {
 
         btnRegistrarPersona.setBackground(new java.awt.Color(187, 187, 187));
         btnRegistrarPersona.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        btnRegistrarPersona.setForeground(new java.awt.Color(0, 0, 0));
         btnRegistrarPersona.setText("Register People");
         btnRegistrarPersona.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -116,7 +115,6 @@ public class Menu extends javax.swing.JFrame {
 
         btnRegistrarLibro.setBackground(new java.awt.Color(187, 187, 187));
         btnRegistrarLibro.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        btnRegistrarLibro.setForeground(new java.awt.Color(0, 0, 0));
         btnRegistrarLibro.setText("Register Book");
         btnRegistrarLibro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -170,7 +168,6 @@ public class Menu extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(187, 187, 187));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Books");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -180,7 +177,6 @@ public class Menu extends javax.swing.JFrame {
 
         btnLoans.setBackground(new java.awt.Color(186, 186, 186));
         btnLoans.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnLoans.setForeground(new java.awt.Color(0, 0, 0));
         btnLoans.setText("Loans");
         btnLoans.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -190,7 +186,6 @@ public class Menu extends javax.swing.JFrame {
 
         btnBorrowers.setBackground(new java.awt.Color(187, 187, 187));
         btnBorrowers.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnBorrowers.setForeground(new java.awt.Color(0, 0, 0));
         btnBorrowers.setText("Borrowers");
         btnBorrowers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -241,12 +236,10 @@ public class Menu extends javax.swing.JFrame {
 
         btnEditBooks.setBackground(new java.awt.Color(186, 186, 186));
         btnEditBooks.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnEditBooks.setForeground(new java.awt.Color(0, 0, 0));
         btnEditBooks.setText("Edit Book");
 
         btnEditPerson.setBackground(new java.awt.Color(186, 186, 186));
         btnEditPerson.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnEditPerson.setForeground(new java.awt.Color(0, 0, 0));
         btnEditPerson.setText("Edit Person");
         btnEditPerson.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -283,6 +276,14 @@ public class Menu extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 550, 310, 150));
+
+        btnManual.setText("User Manual");
+        btnManual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManualActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnManual, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 720, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -331,6 +332,16 @@ public class Menu extends javax.swing.JFrame {
         consulta.setVisible(true);
     }//GEN-LAST:event_btnBorrowersMouseClicked
 
+    private void btnManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManualActionPerformed
+        // TODO add your handling code here:
+        try {
+                        File myFile = new File("C:\\Users\\gabyg\\Documents\\ManualDeUsuario.pdf");
+                        Desktop.getDesktop().open(myFile);
+                    } catch (IOException e) {
+                        // System probably doesn't have a default PDF program
+                    }
+    }//GEN-LAST:event_btnManualActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -371,6 +382,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnEditBooks;
     private javax.swing.JButton btnEditPerson;
     private javax.swing.JButton btnLoans;
+    private javax.swing.JButton btnManual;
     private javax.swing.JButton btnRegistrarLibro;
     private javax.swing.JButton btnRegistrarPersona;
     private javax.swing.JButton jButton1;

@@ -15,3 +15,8 @@ Select insertBook('title', 1, 1, 'autrhg', 'house', 5, 2, null) from dual;
 SELECT * FROM LB.BOOK;
 
 --, inCoverPage IN BLOB
+
+BEGIN
+    INSERT INTO LB.BOOK(Title, ID_Clasification, ID_Item, Author, EDITION, CoverPage, PublishingHouse, Score)
+    VALUES('title', 1, 1, 'autrhg', 8, null,'house', 2);
+END
