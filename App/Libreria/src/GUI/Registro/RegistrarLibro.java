@@ -309,7 +309,9 @@ public class RegistrarLibro extends javax.swing.JFrame {
         try {
             //Se ingresa el libro en la BD
             int clasi = ConnectDB.extractClasificationID(clasification);
-            ConnectDB.insertBook(title,author, publishingHouse, score, edition, image,clasi);
+            ConnectDB.crearItem(title);
+            int item = ConnectDB.extractItemID(title);
+            ConnectDB.insertBook(title,author, publishingHouse, score, edition, image,clasi, item);
             
         } catch (SQLException ex) {
             Logger.getLogger(RegistrarPersona.class.getName()).log(Level.SEVERE, null, ex);

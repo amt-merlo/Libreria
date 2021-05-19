@@ -37,7 +37,7 @@ public class ConnectDB {
         st.execute();
     }
     
-    public static void insertBook(String title, String author, String publishingHouse, int score, int edition, FileInputStream image, int clasification) throws SQLException{
+    public static void insertBook(String title, String author, String publishingHouse, int score, int edition, FileInputStream image, int clasification, int idItem) throws SQLException{
         String host = dbHost;
         String user = dbUser;
         String password = dbPassword;
@@ -47,14 +47,46 @@ public class ConnectDB {
         
         st.setString(1, title);
         st.setInt(2, clasification);
-        st.setString(3, author);
-        st.setString(4, publishingHouse);
-        st.setInt(5, score);
-        st.setInt(6, edition);
-        st.setBinaryStream(7, image);
+        st.setInt(3, idItem);
+        st.setString(4, author);
+        st.setString(5, publishingHouse);
+        st.setInt(6, score);
+        st.setInt(7, edition);
+        st.setBinaryStream(8, image);
         System.out.println("antes del execute");
         st.execute();
         System.out.println("exito");
+    }
+    
+    public static void crearItem(String title) throws SQLException{
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
+        Connection con = DriverManager.getConnection(host, user, password);
+        CallableStatement st = con.prepareCall("{ call createItem(?)");
+        System.out.println("en la llamada");
+        
+        st.setString(1, title);
+        System.out.println("antes del execute");
+        st.execute();
+        System.out.println("exito");
+    }
+    
+    public static int extractItemID(String title) throws SQLException{
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
+        
+        
+        Connection con = DriverManager.getConnection(host, user, password);
+        CallableStatement st = con.prepareCall("{?= call get_ItemID(?)}");
+        st.setString(2, title);
+        st.registerOutParameter(1, OracleTypes.VARCHAR);
+        
+        st.executeQuery();
+        
+        int ID = st.getInt(1);
+        return ID;
     }
     
     public static void insertEmail(int id, String email) throws SQLException{

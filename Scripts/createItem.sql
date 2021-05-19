@@ -1,0 +1,11 @@
+/*DOCUMENTACIï¿½N INTERNA
+Descripciï¿½n: Procedimmiento que recibe por parï¿½metro los datos de la persona que va a ser insertada en la tabla LB.Person
+Autor principal: Gabriela Gutiérrez
+Fecha de creaciï¿½n: 1/05/2021
+*/
+
+create or replace PROCEDURE createItem AS
+BEGIN
+    INSERT INTO LB.BOOK(Title, ID_Clasification, Author, EDITION, CoverPage, PublishingHouse, Score)
+    VALUES(inTitle, inClasification, inAuthor, inEdition, inCoverPage, inPublishingHouse, inScore);
+END insertBook;
