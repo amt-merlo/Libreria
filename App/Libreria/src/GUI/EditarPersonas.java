@@ -418,7 +418,7 @@ public class EditarPersonas extends javax.swing.JFrame {
         //Luego consultamos el numero de id de la relacion
         try {
             ID_PersonType = ConnectDB.get_PersonTypeID(PersonType);
-            System.out.println(ID+ID_PersonType+Firstname+Lastname+Birthdate);
+            
             //Hacemos el update
             ConnectDB.update_Person(ID, ID_PersonType, Firstname, Lastname, Birthdate);
             

@@ -7,6 +7,7 @@ package GUI;
 
 import DBCommands.ConnectDB;
 import GUI.Registro.RegistrarPersona;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -27,12 +28,33 @@ public class EditarLibros extends javax.swing.JFrame {
     public EditarLibros() {
         initComponents();
         
+        //Color del JFrame
+        this.getContentPane().setBackground(Color.decode("#ACBC8A")); //F5CC7E o F5D28E o F3CC89 | Azul 0a043c
+        
+        //Centrar ventana
+        this.setLocationRelativeTo(null);
+        
         ArrayList<Book> libros = new ArrayList();
         try {
             libros = ConnectDB.getBooks();
             llenarTabla(libros);
         } catch (SQLException ex) {
             Logger.getLogger(EditarLibros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Para el comboBox
+        ArrayList<String> tipos = new ArrayList<String>();
+        
+        try {
+            tipos = ConnectDB.get_BookClasifications();
+            
+            for (int i = 0; i<tipos.size(); i++){
+                System.out.println("Holla"+tipos.get(i));
+                this.comboBoxClasification.addItem(tipos.get(i));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistrarPersona.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error al cargar las clasificaciones.");
         }
     }
 
@@ -96,7 +118,12 @@ public class EditarLibros extends javax.swing.JFrame {
         comboBoxClasification = new javax.swing.JComboBox<>();
         lblID = new javax.swing.JLabel();
         lblSetID = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         lblCantidad = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         tableBooks.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,67 +151,99 @@ public class EditarLibros extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableBooks);
 
+        jPanel1.setBackground(new java.awt.Color(236, 209, 137));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
+
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setText("Title: ");
 
+        lblAuthor.setForeground(new java.awt.Color(255, 255, 255));
         lblAuthor.setText("Author:");
 
+        lblEdition.setForeground(new java.awt.Color(255, 255, 255));
         lblEdition.setText("Edition:");
 
+        lblPHouse.setForeground(new java.awt.Color(255, 255, 255));
         lblPHouse.setText("Publishing House: ");
 
+        lblScore.setForeground(new java.awt.Color(255, 255, 255));
         lblScore.setText("Score: ");
 
+        lblClasification.setForeground(new java.awt.Color(255, 255, 255));
         lblClasification.setText("Clasification: ");
 
-        comboBoxClasification.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
+        lblID.setForeground(new java.awt.Color(255, 255, 255));
         lblID.setText("ID:");
+
+        lblSetID.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblSetID.setForeground(new java.awt.Color(0, 0, 0));
+
+        jButton1.setText("Save Changes");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe Script", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Modify Book");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblSetID, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblScore, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFieldScore, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(lblEdition, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtFieldEdition, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblSetID, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(lblAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(2, 2, 2)))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtFieldTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtFieldAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(lblScore, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtFieldScore))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(lblPHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtFieldPHouse, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                                .addComponent(lblAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(2, 2, 2)))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(lblEdition, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtFieldEdition, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                                        .addComponent(txtFieldTitle, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtFieldAuthor, javax.swing.GroupLayout.Alignment.LEADING))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblClasification, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton1)
+                                    .addComponent(comboBoxClasification, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblPHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFieldPHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblClasification, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboBoxClasification, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(140, Short.MAX_VALUE))
+                        .addGap(122, 122, 122)
+                        .addComponent(jLabel1)))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(14, 14, 14)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblID)
                     .addComponent(lblSetID))
@@ -212,35 +271,79 @@ public class EditarLibros extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblClasification)
                     .addComponent(comboBoxClasification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(45, 45, 45))
         );
+
+        lblTitulo.setFont(new java.awt.Font("Segoe Script", 0, 24)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo.setText("Editing Books");
+
+        jPanel2.setBackground(new java.awt.Color(242, 180, 118));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
 
         lblCantidad.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblCantidad.setForeground(new java.awt.Color(255, 255, 255));
         lblCantidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Total Books Consulted:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(25, 25, 25))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(437, 437, 437)))
+                        .addGap(25, 25, 25))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(lblCantidad)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addGap(11, 11, 11)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitulo)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -263,22 +366,38 @@ public class EditarLibros extends javax.swing.JFrame {
         txtFieldPHouse.setText(model.getValueAt(row, 5).toString());
         txtFieldScore.setText(model.getValueAt(row, 6).toString());
         
-        //Para el comboBox
-        ArrayList<String> tipos = new ArrayList<String>();
+        
+        comboBoxClasification.setSelectedItem(model.getValueAt(row, 2).toString());
+    }//GEN-LAST:event_tableBooksMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        int id,edition, score, id_clasification;
+        String title, author, pHouse, clasification;
+        
+        //Sacamos los datos
+        id = Integer.parseInt(lblSetID.getText());
+        edition = Integer.parseInt(txtFieldEdition.getText());
+        score = Integer.parseInt(txtFieldScore.getText());
+        title = txtFieldTitle.getText().toString();
+        author = txtFieldAuthor.getText().toString();
+        pHouse = txtFieldPHouse.getText().toString();
+        clasification = comboBoxClasification.getSelectedItem().toString();
         
         try {
-            tipos = ConnectDB.get_BookClasifications();
+            id_clasification = ConnectDB.extractClasificationID(clasification);
+            ConnectDB.update_Book(id, id_clasification, title, author, pHouse, edition, score);
             
-            for (int i = 0; i<tipos.size(); i++){
-                
-                this.comboBoxClasification.addItem(tipos.get(i));
-            }
+            ArrayList<Book> libros = new ArrayList();
+            libros = ConnectDB.getBooks();
+            
+            llenarTabla(libros);
         } catch (SQLException ex) {
-            Logger.getLogger(RegistrarPersona.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Error al cargar las clasificaciones.");
+            Logger.getLogger(EditarLibros.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //comboBoxRelationship.setSelectedItem(model.getValueAt(row, 1).toString());
-    }//GEN-LAST:event_tableBooksMouseClicked
+        
+        
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -317,7 +436,11 @@ public class EditarLibros extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboBoxClasification;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAuthor;
     private javax.swing.JLabel lblCantidad;
@@ -328,6 +451,7 @@ public class EditarLibros extends javax.swing.JFrame {
     private javax.swing.JLabel lblScore;
     private javax.swing.JLabel lblSetID;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JTable tableBooks;
     private javax.swing.JTextField txtFieldAuthor;
     private javax.swing.JTextField txtFieldEdition;

@@ -5,6 +5,8 @@
  */
 package libreria;
 
+import GUI.Menu;
+
 /**
  *
  * @author Allison
@@ -15,13 +17,8 @@ public class Libreria {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        /*
-        try {
-            // TODO code application logic here
-            ConnectDB.insertPerson(305250055, "Allison", "Montero M", "15-05-2000");
-        } catch (SQLException ex) {
-            Logger.getLogger(Libreria.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        Menu menu= new Menu();
+        menu.setVisible(true);
     }
     
 }

@@ -17,9 +17,9 @@ import oracle.jdbc.OracleTypes;
  * @author Allison
  */
 public class ConnectDB {
-    private static String dbPassword = "HlMnd2320"; // (merloadmin) -- (HlMnd2320)
+    private static String dbPassword = "merloadmin"; // (merloadmin) -- (HlMnd2320)
     private static String dbUser = "sys as sysdba";
-    private static String dbHost = "jdbc:oracle:thin:@localhost:1521/DBTarea1"; // (jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC)-- (jdbc:oracle:thin:@localhost:1521/DBTarea1)
+    private static String dbHost = "jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC"; // (jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC)-- (jdbc:oracle:thin:@localhost:1521/DBTarea1)
     
     public static void insertPerson(int ID_Number, int ID_PersonType, String Firstname, String Lastname, String Birthdate) throws SQLException{
         String host = dbHost;
@@ -811,5 +811,24 @@ public class ConnectDB {
             libros.add(book);
         }
         return libros;
+    }
+    
+    public static void update_Book(int ID, int ID_Clasification, String Title, String Author, String PHouse, int Edition, int Score) throws SQLException{
+        String host = dbHost;
+        String user = dbUser;
+        String password = dbPassword;
+        
+        Connection con = DriverManager.getConnection(host, user, password);
+        CallableStatement st = con.prepareCall("{ call update_Book(?, ?, ?, ?, ?, ?, ?)");
+        
+        st.setInt(1, ID);
+        st.setInt(2, ID_Clasification);
+        st.setString(3, Title);
+        st.setString(4, Author);
+        st.setInt(5, Edition);
+        st.setString(6, PHouse);
+        st.setInt(7, Score);
+        
+        st.execute();
     }
 }
