@@ -19,7 +19,7 @@ import oracle.jdbc.OracleTypes;
 public class ConnectDB {
     private static String dbPassword = "merloadmin"; // (merloadmin) -- (HlMnd2320)
     private static String dbUser = "sys as sysdba";
-    private static String dbHost = "jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC"; // (jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC)-- (jdbc:oracle:thin:@localhost:1521/DBTarea1)
+    private static String dbHost = "jdbc:oracle:thin:@localhost:1521/PROYECTOSTEC"; // (jdbc:oracle:thin:@localhost:1521:PROYECTOSTEC)-- (jdbc:oracle:thin:@localhost:1521/DBTarea1)
     
     public static void insertPerson(int ID_Number, int ID_PersonType, String Firstname, String Lastname, String Birthdate) throws SQLException{
         String host = dbHost;
@@ -42,7 +42,7 @@ public class ConnectDB {
         String user = dbUser;
         String password = dbPassword;
         Connection con = DriverManager.getConnection(host, user, password);
-        CallableStatement st = con.prepareCall("{ call InsertBook(?, ?, ?, ?, ?, ?)");
+        CallableStatement st = con.prepareCall("{ call InsertBook(?, ?, ?, ?, ?, ?, ?, ?)");
         System.out.println("en la llamada");
         
         st.setString(1, title);

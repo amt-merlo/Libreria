@@ -57,22 +57,15 @@
                           </Group>
                       </Group>
                   </Group>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
-                          <Component id="btnRegister" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtFieldTitle" max="32767" attributes="0"/>
-                              <Component id="txtFieldAuthor" alignment="1" max="32767" attributes="0"/>
-                              <Component id="txtFieldEdition" alignment="1" max="32767" attributes="0"/>
-                              <Component id="txtFieldPHouse" alignment="1" max="32767" attributes="0"/>
-                              <Component id="txtFieldScore" alignment="1" max="32767" attributes="0"/>
-                              <Component id="cBoxClasification" alignment="1" pref="117" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
+                  <EmptySpace pref="52" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txtFieldTitle" max="32767" attributes="0"/>
+                      <Component id="txtFieldAuthor" alignment="1" max="32767" attributes="0"/>
+                      <Component id="txtFieldEdition" alignment="1" max="32767" attributes="0"/>
+                      <Component id="txtFieldPHouse" alignment="1" max="32767" attributes="0"/>
+                      <Component id="txtFieldScore" alignment="1" max="32767" attributes="0"/>
+                      <Component id="cBoxClasification" alignment="1" pref="117" max="32767" attributes="0"/>
+                      <Component id="btnRegister" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
@@ -127,7 +120,7 @@
                       </Group>
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="35" max="32767" attributes="0"/>
+                  <EmptySpace pref="33" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">

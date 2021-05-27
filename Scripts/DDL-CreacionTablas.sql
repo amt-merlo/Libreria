@@ -91,8 +91,8 @@ CREATE USER LB IDENTIFIED BY LB; -- ESTE SE HACE SOLO LA PRIMERA VEZ !!!!
 --Se crean las tablas necesarias
 CREATE TABLE LB.Person (ID_Number INT PRIMARY KEY NOT NULL,
                         ID_PersonType INT NOT NULL,
-                        Firstname NCHAR(30) NOT NULL, 
-                        Lastname NCHAR(30) NOT NULL,
+                        Firstname NCHAR(40) NOT NULL, 
+                        Lastname NCHAR(40) NOT NULL,
                         Birthdate DATE NOT NULL,
                         --Campos de auditor�a
                         CreatedOn DATE,
@@ -102,7 +102,7 @@ CREATE TABLE LB.Person (ID_Number INT PRIMARY KEY NOT NULL,
                         
 CREATE TABLE LB.Email (ID INT PRIMARY KEY NOT NULL, 
                        ID_Person INT NOT NULL, 
-                       Email NCHAR(30) NOT NULL,
+                       Email NCHAR(60) NOT NULL,
                        --Campos de auditor�a
                         CreatedOn DATE,
                         CreatedBy NCHAR(30),
@@ -139,8 +139,8 @@ CREATE TABLE LB.Loan_Control (ID INT PRIMARY KEY NOT NULL,
                               UpdatedBy NCHAR(30));
 
 CREATE TABLE LB.Item (ID INT PRIMARY KEY NOT NULL, 
-                      Name NCHAR(30) NOT NULL, 
-                      Description NCHAR(60) NOT NULL, 
+                      Name NCHAR(200) NOT NULL, 
+                      Description NCHAR(200) NOT NULL, 
                       on_loan NUMBER(1,0),
                       --Campos de auditor�a
                       CreatedOn DATE,
@@ -151,11 +151,11 @@ CREATE TABLE LB.Item (ID INT PRIMARY KEY NOT NULL,
 CREATE TABLE LB.Book (ID INT PRIMARY KEY NOT NULL,
                       ID_Clasification INT NOT NULL,
                       ID_Item INT NOT NULL,
-                      Title NCHAR(30) NOT NULL, 
-                      Author NCHAR(30) NOT NULL, 
+                      Title NCHAR(200) NOT NULL, 
+                      Author NCHAR(200) NOT NULL, 
                       EDITION INT NOT NULL, 
                       CoverPage BLOB, 
-                      PublishingHouse NCHAR(30) NOT NULL, 
+                      PublishingHouse NCHAR(100) NOT NULL, 
                       Score INT NOT NULL,
                       --Campos de auditor�a
                       CreatedOn DATE,
@@ -164,7 +164,7 @@ CREATE TABLE LB.Book (ID INT PRIMARY KEY NOT NULL,
                       UpdatedBy NCHAR(30));
                       
 CREATE TABLE LB.Book_Clasification (ID INT PRIMARY KEY NOT NULL, 
-                                    Clasification NCHAR(30) NOT NULL,
+                                    Clasification NCHAR(100) NOT NULL,
                                     --Campos de auditor�a
                                     CreatedOn DATE,
                                     CreatedBy NCHAR(30),

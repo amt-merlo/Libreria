@@ -1,7 +1,4 @@
 
-
-
-
 INSERT INTO LB.ITEM(name, description, on_loan)
 VALUES('El Resplandor', 'El mejor libro de la historia', 1);
 
@@ -21,12 +18,19 @@ VALUES('Origen', 'Mi libro fav 2', 1);
 INSERT INTO LB.BOOK(ID_Clasification, ID_Item, Title, Author, Edition, PublishingHouse, Score)
 VALUES(3, 3, 'Origen', 'Dan Brown', 9, 'Booket', 9);
 
-
 INSERT INTO LB.ITEM(name, description, on_loan)
-VALUES('Inferno', 'Mi libro fav', 0);
+VALUES('Todo lo que sucedio con Miranda', 'Un libro raro', 1);
 
 INSERT INTO LB.BOOK(ID_Clasification, ID_Item, Title, Author, Edition, PublishingHouse, Score)
-VALUES(3, 4, 'Inferno', 'Dan Brown', 6, 'Booket', 10);
+VALUES(3, 4, 'Todo lo que sucedio con Miranda', 'Javier Castillo', 9, 'Suma de Letras', 8);
+
+INSERT INTO LB.ITEM(name, description, on_loan)
+VALUES('La chica de Nieve', 'Nieve Item', 1);
+
+INSERT INTO LB.BOOK(ID_Clasification, ID_Item, Title, Author, Edition, PublishingHouse, Score)
+VALUES(3, 5, 'La chica de Nieve', 'Dan Brown', 6, 'Suma de Letras', 10);
+
+
 
 select * from lb.book;
 select * from lb.address;
